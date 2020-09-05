@@ -3,3 +3,24 @@
 .example-button-row a {
   margin-right: 80px;
 }
+
+.align-center {
+  margin: 0 auto;
+}
+
+.head-row {
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 20px 20px;
+  margin-block: 10px;
+}
+
+.class-elements {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.img-board {
+  margin-right: 100px;
+  margin-left: 100px;
+}
