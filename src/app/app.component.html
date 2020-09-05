@@ -1,6 +1,10 @@
 <mat-toolbar color="primary" class="head">
 
-    <img class="img-board" src='./assets/images/logo.ico' height=45px (click)=navigateToMain()>
+    <img class="img-board" src='./assets/images/logo.ico' height=45px [matMenuTriggerFor]="menu">
+            <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)=navigateToMain()>Главная</button>
+            <button mat-menu-item>Про нашу эмблему</button>
+            </mat-menu>
 
     <div class="buttons">
         <button mat-button class="class-elements" (click)=navigateToAbout()>О клубе</button>
@@ -10,14 +14,17 @@
         <button mat-button class="class-elements">Контакты</button>
     </div>
 
-
         
 </mat-toolbar>
 
+<mat-card class="static">
+    <router-outlet></router-outlet>
+</mat-card>    
 
-<router-outlet></router-outlet>
 
 <img src='./assets/images/1.png' height=50px>
 
 <mat-spinner class="align-center"></mat-spinner>
 <mat-slider min="1" max="100" step="1" value="1"></mat-slider>
+
+

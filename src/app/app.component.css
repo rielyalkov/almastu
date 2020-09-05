@@ -8,10 +8,6 @@
   margin: 0 auto;
 }
 
-.head {
-  border-radius: 0 0 20px 20px;
-}
-
 
 .img-board {
   cursor: pointer;
@@ -27,5 +23,22 @@
 .buttons {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
+}
+
+.static {
+  width: 960px;
+  margin: 0 auto;
+  margin-top: 10px; 
+}
+
+.class-elements {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.head {
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+  -moz-box-shadow: 0 10px 6px -6px #777;
+       box-shadow: 0 10px 6px -6px #777;
 }
