@@ -37,11 +37,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { AboutComponent } from './about/about.component';
+import { MainPageComponent } from './main-page/main-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

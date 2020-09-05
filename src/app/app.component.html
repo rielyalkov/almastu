@@ -1,14 +1,22 @@
-<mat-toolbar color="primary" class="head-row">
+<mat-toolbar color="primary" class="head">
 
-        <button mat-button class="class-elements">О клубе</button>
+    <img class="img-board" src='./assets/images/logo.ico' height=45px (click)=navigateToMain()>
+
+    <div class="buttons">
+        <button mat-button class="class-elements" (click)=navigateToAbout()>О клубе</button>
         <button mat-button class="class-elements">Карта</button>
 
-            <img class="img-board" src='./assets/images/logo.ico' height=50px >
-        
         <button mat-button class="class-elements">Фотогалерея</button>
         <button mat-button class="class-elements">Контакты</button>
+    </div>
+
+
         
 </mat-toolbar>
+
+
+<router-outlet></router-outlet>
+
 <img src='./assets/images/1.png' height=50px>
 
 <mat-spinner class="align-center"></mat-spinner>

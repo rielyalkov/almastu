@@ -8,19 +8,24 @@
   margin: 0 auto;
 }
 
-.head-row {
-  display: flex;
-  justify-content: center;
+.head {
   border-radius: 0 0 20px 20px;
-  margin-block: 10px;
 }
 
-.class-elements {
-  margin-right: 10px;
-  margin-left: 10px;
-}
 
 .img-board {
+  cursor: pointer;
   margin-right: 100px;
   margin-left: 100px;
+  opacity: 1;
+}
+.img-board:hover {
+  opacity: 0.8;
+}
+
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
