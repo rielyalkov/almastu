@@ -1,3 +1,28 @@
+@media only screen and (max-device-width: 620px) {
+
+  .threeDots {
+    display: block;
+  }
+
+  .class-elements {
+    display: none;
+  }
+}
+
+
+@media only screen and (min-device-width: 620px) {
+
+  .threeDots {
+    display: none;
+  }
+
+  .class-elements {
+    display: block;
+  }
+}
+
+
+
 .example-button-row button,
 
 .example-button-row a {
@@ -11,8 +36,6 @@
 
 .img-board {
   cursor: pointer;
-  margin-right: 100px;
-  margin-left: 100px;
   opacity: 1;
 }
 
@@ -51,22 +74,12 @@
 
 } 
 
-
-@media only screen and (max-device-width: 620px) {
-
-  .head {
-    display: none;
-  }
-  
-
-}
-  
 .footer {
   left:0;
   right:0;
 }
 
 .row {
-  width: 500px;
-  display: flex; 
+  margin-top: 10px;
+  display: flex;
 }
