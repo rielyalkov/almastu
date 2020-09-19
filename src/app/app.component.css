@@ -51,6 +51,16 @@
 
 } 
 
+
+@media only screen and (max-device-width: 620px) {
+
+  .head {
+    display: none;
+  }
+  
+
+}
+  
 .footer {
   left:0;
   right:0;
