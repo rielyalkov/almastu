@@ -1,11 +1,23 @@
 @media only screen and (max-device-width: 620px) {
 
-  .threeDots {
-    display: block;
-  }
 
   .class-elements {
     display: none;
+  }
+
+  .buttons {
+    display: none;
+  }
+
+
+  .row {
+    margin-top: 10px;
+    display: flex;
+  }
+
+  .img-board {
+    margin-right: 50%;
+    margin-left: 50%;
   }
 }
 
@@ -19,15 +31,18 @@
   .class-elements {
     display: block;
   }
+
+  .static {
+    width: 960px;
+  } 
+
+  .row {
+    margin-top: 10px;
+    display: flex;
+  }
 }
 
 
-
-.example-button-row button,
-
-.example-button-row a {
-  margin-right: 80px;
-}
 
 .align-center {
   margin: 0 auto;
@@ -51,7 +66,6 @@
 }
 
 .static {
-  width: 960px;
   margin: 0 auto;
   margin-top: 70px;
 } 
@@ -75,11 +89,8 @@
 } 
 
 .footer {
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
 }
 
-.row {
-  margin-top: 10px;
-  display: flex;
-}
+
