@@ -5,9 +5,14 @@
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)=navigateToMain()>Главная</button>
             <button mat-menu-item>Про нашу эмблему</button>
+            <button mat-menu-item  (click)=navigateToAbout()>О клубе</button>
+            <button mat-menu-item  routerLink="/map">Карта</button>
+    
+            <button mat-menu-item  routerLink="/gallery">Фотогалерея</button>
+            <button mat-menu-item  routerLink="/contacts">Контакты</button>
         </mat-menu>
 
-        <img class="img-board" src='./assets/images/logo.ico' height=45px (click)=navigateToMain()>
+        <img src='./assets/images/logo.ico' height=45px (click)=navigateToMain() [matMenuTriggerFor]="menu">
     </div>
 
 
