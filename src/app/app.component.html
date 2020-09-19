@@ -1,10 +1,15 @@
 <mat-toolbar color="primary" class="head">
+    <div class="row"> 
+        <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
 
-    <img class="img-board" src='./assets/images/logo.ico' height=45px [matMenuTriggerFor]="menu">
-            <mat-menu #menu="matMenu">
+        <mat-menu #menu="matMenu">
             <button mat-menu-item (click)=navigateToMain()>Главная</button>
             <button mat-menu-item>Про нашу эмблему</button>
-            </mat-menu>
+        </mat-menu>
+
+        <img class="img-board" src='./assets/images/logo.ico' height=45px (click)=navigateToMain()>
+    </div>
+
 
     <div class="buttons">
         <button mat-button class="class-elements" (click)=navigateToAbout()>О клубе</button>

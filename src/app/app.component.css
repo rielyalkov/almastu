@@ -55,3 +55,8 @@
   left:0;
   right:0;
 }
+
+.row {
+  width: 500px;
+  display: flex; 
+}
