@@ -39,8 +39,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AboutComponent } from './about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { MapComponent } from './map/map/map.component';
-import { GalleryComponent } from './gallery/gallery/gallery.component';
+import { MapComponent } from './map/map.component';
+import { GalleryComponent } from './gallery/gallery.component';
 import { ContactsComponent } from './contacts/contacts.component';
 
 
