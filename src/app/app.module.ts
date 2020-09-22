@@ -42,6 +42,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MapComponent } from './map/map.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     ContactsComponent
   ],
   imports: [
+    LeafletModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -91,7 +93,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   exports: [
     MatButtonModule,
