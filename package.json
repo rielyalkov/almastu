@@ -23,6 +23,7 @@
     "@angular/router": "~10.0.14",
     "@asymmetrik/ngx-leaflet": "^8.1.0",
     "leaflet": "^1.7.1",
+    "leaflet-draw": "^1.0.4",
     "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
