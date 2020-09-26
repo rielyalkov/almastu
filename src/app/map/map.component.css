@@ -1,5 +1,18 @@
-@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.js');
-
 .align {
   text-align: center;
 }
+
+.example-radio-group {
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-rad {
+  margin: 0px 10px 10px 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+

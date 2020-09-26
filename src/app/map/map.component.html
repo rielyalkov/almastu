@@ -1,4 +1,18 @@
+
+<mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  [(ngModel)]="favoriteSeason">
+  <mat-radio-button *ngFor="let season of seasons"
+                    [value]="season"
+                    class="mat-rad"
+                    (change)="change($event)">
+    {{season}}
+  </mat-radio-button>
+</mat-radio-group>
+
 <div class="align">
   <div id="mapHTML" >
   </div>
 </div>
+
+
