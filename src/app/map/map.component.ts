@@ -22,7 +22,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.Map);
-    const marker = L.marker([67.44, 33.43 ], {icon: lIcon}).addTo(this.Map);
+    const marker = L.marker([55.42798, 37.76939 ], {icon: lIcon}).addTo(this.Map);
   }
 
   ngAfterViewInit(): void {
