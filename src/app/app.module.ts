@@ -54,7 +54,6 @@ import {FormsModule} from '@angular/forms';
     AppComponent,
     AboutComponent,
     MainPageComponent,
-    MapComponent,
     GalleryComponent,
     ContactsComponent,
     SongComponent,
@@ -62,7 +61,6 @@ import {FormsModule} from '@angular/forms';
     DevizComponent
   ],
     imports: [
-        LeafletModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
