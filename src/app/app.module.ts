@@ -43,6 +43,9 @@ import { MapComponent } from './map/map.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { SongComponent } from './about/song/song.component';
+import { LogotypeComponent } from './about/logotype/logotype.component';
+import { DevizComponent } from './about/deviz/deviz.component';
 
 
 @NgModule({
@@ -52,7 +55,10 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     MainPageComponent,
     MapComponent,
     GalleryComponent,
-    ContactsComponent
+    ContactsComponent,
+    SongComponent,
+    LogotypeComponent,
+    DevizComponent
   ],
   imports: [
     LeafletModule,
