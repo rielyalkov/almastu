@@ -20,10 +20,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
   OpenStreetMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
+  Zoom;
 
   ngOnInit(): void {
-    document.getElementById('mapHTML').innerHTML = "<div id='map' style='height: 500px;' leaflet></div>"
+    document.getElementById('mapHTML').innerHTML = '<div id=\'map\' style=\'height: 500px;\' leaflet></div>';
     const lIcon = L.icon({
       iconUrl: 'assets/images/location.svg',
       iconSize:     [24, 24],
@@ -43,17 +43,31 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>');
     L.marker([64.838539, 33.693727], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия</b>');
     L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>');
+
+
+    this.Map.on('zoom', function() {
+
+      this.Zoom = this.getZoom();
+      console.log(this.Zoom);
+      if (this.Zoom > 10) {
+        const latlngs = [
+          [64.838539, 33.693727],
+          [44.263300, 40.171900]
+        ];
+        // @ts-ignore
+        L.polyline(latlngs, {color: '#366578'}).addTo(this);
+      }
+    });
+
+
   }
 
   change(event: MatRadioChange): void {
-    console.log(event);
     switch (event.value) {
       case ('Топографическая карта'):
-        console.log('1');
         this.mapStyleDefine(this.OpenTopoMap);
         break;
       case ('Географическая карта'):
-        console.log('2');
         this.mapStyleDefine(this.OpenStreetMap);
         break;
     }
