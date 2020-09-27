@@ -20,6 +20,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
   OpenStreetMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  MarkerArray;
 
   ngOnInit(): void {
     document.getElementById('mapHTML').innerHTML = '<div id=\'map\' style=\'height: 500px;\' leaflet></div>';
@@ -54,8 +55,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     this.Map = L.map('map', {drawControl: false}).setView([60.000, 100.000], 3);
     this.mapStyleDefine(this.OpenStreetMap);
     const markerKh = L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>');
-    L.marker([55.259720, 59.792500], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>');
-    L.marker([43.345830, 42.448610], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>');
+    this.MarkerArray = [
+      [L.marker([55.259720, 59.792500], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>')],
+      [L.marker([43.345830, 42.448610], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>')],
+    ];
+    console.log(this.MarkerArray[1]);
     L.marker([56.949400, 32.838600], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>');
     L.marker([56.427395, 28.820091], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>');
     L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>');
@@ -67,10 +71,10 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     this.Map.on('zoom', function() {
 
       const Zoom = this.getZoom();
-      console.log(Zoom);
       if (Zoom > 10) {
-        L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).addTo(this).bindPopup('<b>Начало Маршрута</b>');
+        const mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).addTo(this).bindPopup('<b>Начало Маршрута</b>');
         L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).addTo(this).bindPopup('<b>Конец Маршрута</b>');
+        console.log(this.getBounds().contains(mark1.getLatLng()));
         const latlngs = [
           [67.8514528445585, 33.2602500994107],
           [67.8470969224148, 33.2615203820751],
