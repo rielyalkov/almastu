@@ -77,27 +77,37 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>');
 
 
+    let line;
+    let mark1;
+    let mark2;
     const that = this;
 
-    this.Map.on('zoom', function() {
-
+    this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
-      if (Zoom > 10) {
-        const mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).addTo(this).bindPopup('<b>Начало Маршрута</b>');
-        L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).addTo(this).bindPopup('<b>Конец Маршрута</b>');
-        console.log(this.getBounds().contains(mark1.getLatLng()));
 
-        if (this.getBounds().contains(mark1.getLatLng()) === true) {
-          let coordinate = [];
-          let coordinatesArray = [];
-          that._mapService.getCoord().pipe(
+      if (Zoom > 7 && this.getBounds().contains(markerKh.getLatLng()) === true ) {
+        mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).addTo(this).bindPopup('<b>Начало Маршрута</b>');
+        mark2 = L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).addTo(this).bindPopup('<b>Конец Маршрута</b>');
+        console.log(this.getBounds().contains(mark1.getLatLng()));
+        let coordinate = [];
+        let coordinatesArray = [];
+        that._mapService.getCoord().pipe(
             map(q => coordinate = q),
             tap(() => {
               coordinatesArray = Object.values(coordinate);
             }),
-            tap(() => L.polyline(coordinatesArray, {color: '#366578'}).addTo(this))
-          ).subscribe();
-        }
+            tap(() => {
+              line = L.polyline(coordinatesArray, {color: '#366578'});
+              line.addTo(this);
+            })
+        ).subscribe();
+      }
+
+      if (Zoom < 7 && line !== undefined) {
+        console.log('log');
+        this.removeLayer(line);
+        this.removeLayer(mark1);
+        this.removeLayer(mark2);
       }
     });
   }
