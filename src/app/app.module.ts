@@ -39,14 +39,27 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AboutComponent } from './about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { MapComponent } from './map/map.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { ContactsComponent } from './contacts/contacts.component';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { SongComponent } from './about/song/song.component';
 import { LogotypeComponent } from './about/logotype/logotype.component';
 import { DevizComponent } from './about/deviz/deviz.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+const config = {
+  apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
+  authDomain: 'almastu-dmd.firebaseapp.com',
+  databaseURL: 'https://almastu-dmd.firebaseio.com',
+  projectId: 'almastu-dmd',
+  storageBucket: 'almastu-dmd.appspot.com',
+  messagingSenderId: '772128718738',
+  appId: '1:772128718738:web:e7b649388f01b2a6f14b4b',
+  measurementId: 'G-S87ZV7E6S7'
+};
 
 
 @NgModule({
@@ -100,6 +113,10 @@ import {FormsModule} from '@angular/forms';
         MatSortModule,
         MatPaginatorModule,
         FormsModule,
+        AngularFireModule.initializeApp(config),
+        AngularFirestoreModule, // firestore
+        AngularFireAuthModule, // auth
+        AngularFireStorageModule
     ],
   exports: [
     MatButtonModule,
