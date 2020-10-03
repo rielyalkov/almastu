@@ -87,16 +87,17 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
         L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).addTo(this).bindPopup('<b>Конец Маршрута</b>');
         console.log(this.getBounds().contains(mark1.getLatLng()));
 
-
-        let coordinate = [];
-        let coordinatesArray = [];
-        that._mapService.getCoord().pipe(
-          map(q => coordinate = q),
-          tap(() => {
-            coordinatesArray = Object.values(coordinate);
-          }),
-          tap(() => L.polyline(coordinatesArray, {color: '#366578'}).addTo(this))
-        ).subscribe();
+        if (this.getBounds().contains(mark1.getLatLng()) === true) {
+          let coordinate = [];
+          let coordinatesArray = [];
+          that._mapService.getCoord().pipe(
+            map(q => coordinate = q),
+            tap(() => {
+              coordinatesArray = Object.values(coordinate);
+            }),
+            tap(() => L.polyline(coordinatesArray, {color: '#366578'}).addTo(this))
+          ).subscribe();
+        }
       }
     });
   }
@@ -116,7 +117,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
   mapStyleDefine(mapStyle): void {
     L.tileLayer(mapStyle, {
       maxZoom: 19,
-      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+      attribution: 'Map data: &copy; <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     }).addTo(this.Map);
   }
 
