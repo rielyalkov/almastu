@@ -67,18 +67,16 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     // @ts-ignore
     this.Map = L.map('map', {drawControl: false}).setView([60.000, 100.000], 3);
     this.mapStyleDefine(this.OpenStreetMap);
-    const markerKh = L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>');
     this.MarkerArray = [
+      [L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>')],
       [L.marker([55.259720, 59.792500], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>')],
       [L.marker([43.345830, 42.448610], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>')],
+      [L.marker([56.949400, 32.838600], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>')],
+      [L.marker([56.427395, 28.820091], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>')],
+      [L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>')],
+      [L.marker([64.838539, 33.693727], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия</b>')],
+      [L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')],
     ];
-    L.marker([56.949400, 32.838600], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>');
-    L.marker([56.427395, 28.820091], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>');
-    L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>');
-    L.marker([64.838539, 33.693727], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия</b>');
-    L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>');
-
-
     let line;
     let mark1;
     let mark2;
@@ -87,13 +85,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
     this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
-      if (Zoom > 7 && this.getBounds().contains(markerKh.getLatLng()) && that.layerIsCreated === false) {
-        mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).bindPopup('<b>Начало Маршрута</b>');
-        mark2 = L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
-        console.log(this.getBounds().contains(mark1.getLatLng()));
-        let coordinate = [];
-        let coordinatesArray = [];
-        that._mapService.getCoord().pipe(
+      for (let i = 0; i < that.MarkerArray.length; i++) {
+        if (Zoom > 8 && this.getBounds().contains(that.MarkerArray[i][0].getLatLng()) && that.layerIsCreated === false) {
+          let coordinate = [];
+          let coordinatesArray = [];
+          that._mapService.getCoord(i).pipe(
             map(q => coordinate = q),
             tap(() => {
               coordinatesArray = Object.values(coordinate);
@@ -101,16 +97,20 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
             tap(() => {
               line = L.polyline(coordinatesArray, {color: '#366578'});
               line.bindPopup('<b>Маршрут</b>');
+              console.log(coordinatesArray);
+              mark1 = L.marker(coordinatesArray[0], {icon: startIcon}).bindPopup('<b>Начало Маршрута</b>');
+              mark2 = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
+              console.log(this.getBounds().contains(mark1.getLatLng()));
               that.markers = L.layerGroup([line, mark1, mark2]);
               this.addLayer(that.markers);
               that.layerIsCreated = true;
-              console.log(that.layerIsCreated);
             })
-        ).subscribe();
-      } else if (that.layerIsCreated === true) {
-        console.log(that.layerIsCreated);
-        that.markers.remove();
-        that.layerIsCreated = false;
+          ).subscribe();
+        } else if (Zoom < 7 && that.layerIsCreated === true) {
+          console.log(that.layerIsCreated);
+          that.markers.remove();
+          that.layerIsCreated = false;
+        }
       }
     });
   }

@@ -10,19 +10,25 @@ export class MapService {
   constructor(private db: AngularFirestore) {
   }
 
-  getCoord(): Observable<any> {
+  getCoord(PathNumber: number): Observable<any> {
 
-
+    console.log(PathNumber);
     const route = [
-  ];
 
+  ];
     // route.map((q, i) => {
     //     this.db.collection('/coordinates').doc('/Khibiny').update({[i]: q});
     // });
 
 
-    const coord1 = this.db.collection('/coordinates').doc('/Khibiny').valueChanges();
-    return coord1.pipe();
+    switch (PathNumber) {
+      case 0:
+        const coord0 = this.db.collection('/coordinates').doc('/Khibiny').valueChanges();
+        return coord0.pipe();
+      case 2:
+
+    }
+
 
   }
 
