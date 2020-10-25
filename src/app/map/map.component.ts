@@ -29,6 +29,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
   OpenStreetMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   MarkerArray;
+  markers;
+  layerIsCreated = false;
 
   Coordinates: CoordModel;
 
@@ -82,12 +84,12 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     let mark2;
     const that = this;
 
+
     this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
-
-      if (Zoom > 7 && this.getBounds().contains(markerKh.getLatLng()) === true ) {
-        mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).addTo(this).bindPopup('<b>Начало Маршрута</b>');
-        mark2 = L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).addTo(this).bindPopup('<b>Конец Маршрута</b>');
+      if (Zoom > 7 && this.getBounds().contains(markerKh.getLatLng()) && that.layerIsCreated === false) {
+        mark1 = L.marker([67.8514528445585, 33.2602500994107], {icon: startIcon}).bindPopup('<b>Начало Маршрута</b>');
+        mark2 = L.marker([67.8457310789751, 33.6799106592661], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
         console.log(this.getBounds().contains(mark1.getLatLng()));
         let coordinate = [];
         let coordinatesArray = [];
@@ -98,16 +100,17 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
             }),
             tap(() => {
               line = L.polyline(coordinatesArray, {color: '#366578'});
-              line.addTo(this);
+              line.bindPopup('<b>Маршрут</b>');
+              that.markers = L.layerGroup([line, mark1, mark2]);
+              this.addLayer(that.markers);
+              that.layerIsCreated = true;
+              console.log(that.layerIsCreated);
             })
         ).subscribe();
-      }
-
-      if (Zoom < 7 && line !== undefined) {
-        console.log('log');
-        this.removeLayer(line);
-        this.removeLayer(mark1);
-        this.removeLayer(mark2);
+      } else if (that.layerIsCreated === true) {
+        console.log(that.layerIsCreated);
+        that.markers.remove();
+        that.layerIsCreated = false;
       }
     });
   }
