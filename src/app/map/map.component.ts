@@ -87,22 +87,23 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
       const Zoom = this.getZoom();
       for (let i = 0; i < that.MarkerArray.length; i++) {
         if (Zoom > 8 && this.getBounds().contains(that.MarkerArray[i][0].getLatLng()) && that.layerIsCreated === false) {
-          let coordinate = [];
+          let routesArrays = [];
           let coordinatesArray = [];
           that._mapService.getCoord(i).pipe(
-            map(q => coordinate = q),
+            map(q => routesArrays = q),
             tap(() => {
-              coordinatesArray = Object.values(coordinate);
-            }),
-            tap(() => {
-              line = L.polyline(coordinatesArray, {color: '#366578'});
-              line.bindPopup('<b>Маршрут</b>');
-              console.log(coordinatesArray);
-              mark1 = L.marker(coordinatesArray[0], {icon: startIcon}).bindPopup('<b>Начало Маршрута</b>');
-              mark2 = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
-              console.log(this.getBounds().contains(mark1.getLatLng()));
-              that.markers = L.layerGroup([line, mark1, mark2]);
-              this.addLayer(that.markers);
+              for (const route of routesArrays) {
+                coordinatesArray = Object.values(route);
+                line = L.polyline(coordinatesArray, {color: '#366578'});
+                line.bindPopup('<b>Маршрут</b>');
+                console.log(coordinatesArray);
+                mark1 = L.marker(coordinatesArray[0], {icon: startIcon}).bindPopup('<b>Начало Маршрута</b>');
+                mark2 = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
+                console.log(this.getBounds().contains(mark1.getLatLng()));
+
+                that.markers = L.layerGroup([line, mark1, mark2]);
+                this.addLayer(that.markers);
+              }
               that.layerIsCreated = true;
             })
           ).subscribe();
