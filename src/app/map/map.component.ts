@@ -86,13 +86,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     const that = this;
 
     for (const aaa of this.MarkerArray) {
-      console.log(aaa);
-
       aaa[0].on('click', (e) => {
         const Zoom = that.Map.getZoom();
         console.log(e);
         // @ts-ignore
-        that.Map.setView(e.latlng, 8);
+        that.Map.setView(e.latlng, 9);
       });
     }
 
@@ -101,7 +99,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
       for (let i = 0; i < that.MarkerArray.length; i++) {
-        if (Zoom >= 8 && this.getBounds().contains(that.MarkerArray[i][0].getLatLng()) && that.layerIsCreated === false) {
+        if (Zoom >= 9 && this.getBounds().contains(that.MarkerArray[i][0].getLatLng()) && that.layerIsCreated === false) {
           let routesArrays = [];
           let coordinatesArray = [];
           that._mapService.getCoord(i).pipe(
@@ -142,7 +140,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
               that.layerIsCreated = true;
             })
           ).subscribe();
-        } else if (Zoom < 7 && that.layerIsCreated === true) {
+        } else if (Zoom < 8 && that.layerIsCreated === true) {
           for (const addedRoute of that.arrayOfAddedRoutes) {
             addedRoute.remove();
           }

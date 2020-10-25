@@ -16,10 +16,10 @@ export class MapService {
 
     console.log(PathNumber);
     const route = [
-
     ];
+
     // route.map((q, i) => {
-    //     this.db.collection('/coordinates').doc('/Taganay').collection('/routes').doc('/1').update({[i]: q});
+    //     this.db.collection('/coordinates').doc('/Elbrus').collection('/routes').doc('/1').update({[i]: q});
     // });
 
 
@@ -37,6 +37,13 @@ export class MapService {
           .collection('/routes')
           .valueChanges();
         return coord.pipe();
+      }
+      case 2: {
+          const coord = this.db.collection('/coordinates')
+            .doc('/Elbrus')
+            .collection('/routes')
+            .valueChanges();
+          return coord.pipe();
       }
     }
 
