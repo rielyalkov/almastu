@@ -19,23 +19,25 @@ export class MapService {
 
     ];
     // route.map((q, i) => {
-    //     this.db.collection('/coordinates').doc('/Khibiny').collection('/routes').doc('/2').update({[i]: q});
+    //     this.db.collection('/coordinates').doc('/Taganay').collection('/routes').doc('/1').update({[i]: q});
     // });
 
 
     switch (PathNumber) {
       case 0: {
-
         const coord = this.db.collection('/coordinates')
           .doc('/Khibiny')
           .collection('/routes')
           .valueChanges();
         return coord.pipe();
-
       }
-        // const coord0 = this.db.collection('/coordinates').doc('/Khibiny').collection('/routes').doc('/2').valueChanges();
-        // console.log(coord0);
-        // return coord0.pipe();
+      case 1: {
+        const coord = this.db.collection('/coordinates')
+          .doc('/Taganay')
+          .collection('/routes')
+          .valueChanges();
+        return coord.pipe();
+      }
     }
 
 
