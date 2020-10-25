@@ -31,9 +31,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
   MarkerArray;
   markers;
   arrayOfAddedRoutes = [];
+
   layerIsCreated = false;
 
-  Coordinates: CoordModel;
+  routeColors = ['#D2691E', '#366578', '#B22222', '#006400'];
+
 
   ngOnInit(): void {
 
@@ -95,30 +97,41 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
             tap(() => {
               for (let j = 0; j < routesArrays.length; j++) {
                 coordinatesArray = Object.values(routesArrays[j]);
-                line = L.polyline(coordinatesArray, {color: '#366578'});
+
+                line = L.polyline(coordinatesArray, {color: that.routeColors[j]});
                 line.bindPopup('<b>Маршрут</b>');
-                console.log(coordinatesArray);
-                mark1 = L.marker(coordinatesArray[0], {icon: startIcon})
+
+                mark1 = L.marker(coordinatesArray[0], {icon: startIcon});
                 if (coordinatesArray[0][2]) {
                   mark1.bindPopup(`${coordinatesArray[0][2]}`);
                 } else {
-                  mark1.bindPopup('<b>Начало Маршрута</b>');;
+                  mark1.bindPopup('<b>Начало Маршрута</b>');
                 }
-                mark2 = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: endIcon}).bindPopup('<b>Конец Маршрута</b>');
+
+                mark2 = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: endIcon})
+                  .bindPopup('<b>Конец Маршрута</b>');
+
                 console.log(this.getBounds().contains(mark1.getLatLng()));
 
                 that.markers = L.layerGroup([line, mark1, mark2]);
+
+                for (let k = 1; k < coordinatesArray.length; k++) {
+                  if (coordinatesArray[k][2]) {
+                    const point = L.marker(coordinatesArray[k], {icon: lIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
+                    that.markers.addLayer(point);
+                    console.log(coordinatesArray[k][2]);
+                  }
+                }
+
                 that.arrayOfAddedRoutes.push(that.markers);
 
                 this.addLayer(that.markers);
-                console.log(that.markers);
               }
               that.layerIsCreated = true;
             })
           ).subscribe();
         } else if (Zoom < 7 && that.layerIsCreated === true) {
           for (const addedRoute of that.arrayOfAddedRoutes) {
-            console.log(addedRoute);
             addedRoute.remove();
           }
           that.layerIsCreated = false;
