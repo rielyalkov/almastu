@@ -9,22 +9,20 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   title = 'almastu';
-  showFiller = false;
-  
 
     constructor(
       private router: Router,
     ) { }
-  
+
     ngOnInit(): void {
       // this.router.navigateByUrl('');
     }
 
-    navigateToAbout() : void {
+    navigateToAbout(): void {
       this.router.navigateByUrl('/about');
     }
 
-    navigateToMain() : void {
+    navigateToMain(): void {
       this.router.navigateByUrl('');
     }
 
