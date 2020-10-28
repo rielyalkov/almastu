@@ -6,6 +6,7 @@ import {MapService} from './mapService/map-service.service';
 import {map, tap} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
+import './Leaflet.Fullscreen.js';
 
 
 export interface CoordModel {
@@ -39,15 +40,11 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
   routeColors = ['#D2691E', '#366578', '#B22222', '#006400'];
 
-
-
-
-
-
   ngOnInit(): void {
 
+    document.getElementById('mapHTML').innerHTML =
+      "<div id='map' style='height: 500px;' leaflet></div>";
 
-    document.getElementById('mapHTML').innerHTML = '<div id=\'map\' style=\'height: 500px;\' leaflet></div>';
     const lIcon = L.icon({
       iconUrl: 'assets/images/location.svg',
       iconSize:     [24, 24],
@@ -74,7 +71,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     });
 
     // @ts-ignore
-    this.Map = L.map('map', {drawControl: false}).setView([60.000, 100.000], 3);
+    this.Map = L.map('map', {drawControl: false, fullscreenControl: true}).setView([60.000, 100.000], 3);
+
     this.mapStyleDefine(this.OpenStreetMap);
     this.MarkerArray = [
       [L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>')],
@@ -87,8 +85,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
       [L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')],
     ];
 
-    // @ts-ignore
-    L.polyline([[67.734720, 33.726110], [55.259720, 59.792500]], {color: '#B22222', snakingSpeed: 200}).addTo(this.Map).snakeIn();
 
     let line;
     let mark1;
@@ -103,8 +99,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
         that.Map.setView(e.latlng, 9);
       });
     }
-
-
 
     this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
@@ -134,7 +128,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
                 console.log(this.getBounds().contains(mark1.getLatLng()));
 
-                that.markers = L.layerGroup([line, mark1, mark2]);
+                that.markers = L.layerGroup([mark1, line, mark2]);
 
                 for (let k = 1; k < coordinatesArray.length; k++) {
                   if (coordinatesArray[k][2]) {
@@ -145,8 +139,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
                 }
 
                 that.arrayOfAddedRoutes.push(that.markers);
-
-                this.addLayer(that.markers).snakeIn();
+                that.markers.addTo(this).snakeIn();
               }
               that.layerIsCreated = true;
             })
@@ -160,7 +153,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
       }
     });
   }
-
 
   change(event: MatRadioChange): void {
     switch (event.value) {
