@@ -47,26 +47,29 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
     const lIcon = L.icon({
       iconUrl: 'assets/images/location.svg',
+      shadowUrl: 'assets/images/shadow.svg',
+      shadowAnchor: [8, 24],
+      shadowSize: [24, 24],
       iconSize:     [24, 24],
-      shadowSize:   [0, 26],
       iconAnchor:   [12, 24],
-      shadowAnchor: [4, 62],
       popupAnchor:  [0, -26]
     });
     const startIcon = L.icon({
       iconUrl: 'assets/images/office.svg',
       iconSize:     [24, 24],
-      shadowSize:   [0, 26],
+      shadowUrl: 'assets/images/shadow.svg',
+      shadowAnchor: [8, 24],
+      shadowSize: [24, 24],
       iconAnchor:   [12, 24],
-      shadowAnchor: [4, 62],
       popupAnchor:  [0, -26]
     });
     const endIcon = L.icon({
       iconUrl: 'assets/images/arrived.svg',
       iconSize:     [24, 24],
-      shadowSize:   [0, 26],
+      shadowUrl: 'assets/images/shadow.svg',
+      shadowAnchor: [8, 24],
+      shadowSize: [24, 24],
       iconAnchor:   [12, 24],
-      shadowAnchor: [4, 62],
       popupAnchor:  [0, -26]
     });
 
