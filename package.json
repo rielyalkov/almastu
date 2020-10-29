@@ -26,6 +26,7 @@
     "firebase": "^7.22.0",
     "leaflet": "^1.7.1",
     "leaflet-draw": "^1.0.4",
+    "leaflet.polyline.snakeanim": "^0.2.0",
     "ngx-webstorage-service": "^4.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
