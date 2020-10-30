@@ -10,8 +10,8 @@
                 <button mat-menu-item  routerLink="/contacts">Контакты</button>
             </mat-menu>
 
-            <div class ="img-board">
-                <img   src='./favicon.ico' height=45px [matMenuTriggerFor]="logo_menu">
+            <div class="img-board">
+                <img src='./favicon.ico' height=45px [matMenuTriggerFor]="logo_menu">
                 <mat-menu #logo_menu="matMenu">
                     <button mat-menu-item (click)=navigateToMain()>Главная</button>
                     <button mat-menu-item (click)=navigateToAbout()>Про нашу эмблему</button>
