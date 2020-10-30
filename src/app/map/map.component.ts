@@ -88,14 +88,16 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
     this.mapStyleDefine(this.OpenStreetMap);
     this.MarkerArray = [
-      [L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>')],
-      [L.marker([55.259720, 59.792500], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>')],
-      [L.marker([43.345830, 42.448610], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>')],
-      [L.marker([56.949400, 32.838600], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>')],
-      [L.marker([56.427395, 28.820091], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>')],
-      [L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>')],
-      [L.marker([64.838539, 33.693727], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия</b>')],
-      [L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')],
+      [L.marker([67.734720, 33.726110], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>')], // 0
+      [L.marker([55.259720, 59.792500], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>')], // 1
+      [L.marker([43.345830, 42.448610], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>')], // 2
+      [L.marker([56.949400, 32.838600], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>')], // 3
+      [L.marker([56.427395, 28.820091], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>')], // 4
+      [L.marker([67.500000, 66.000000], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>')], // 5
+      [L.marker([66.114073, 32.439454], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия Север</b>')], // 6
+      [L.marker([64.838539, 33.693727], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия Центр</b>')], // 7
+      [L.marker([62.867714, 33.215538], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Карелия Юг</b>')], // 8
+      [L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')], // 9
     ];
 
 
