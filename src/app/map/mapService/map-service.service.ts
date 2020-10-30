@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
-
 
   constructor(private db: AngularFirestore) {
   }
@@ -22,10 +20,6 @@ export class MapService {
   }
 
   getCoord(PathNumber: number): Observable<any> {
-
-    console.log(PathNumber);
-
-
 
     switch (PathNumber) {
       case 0: {
@@ -57,7 +51,6 @@ export class MapService {
         return coord.pipe();
       }
     }
-
 
   }
 

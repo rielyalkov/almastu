@@ -100,7 +100,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
       [L.marker([44.263300, 40.171900], {icon: lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')], // 9
     ];
 
-
     let line;
     let mark1;
     let mark2;
