@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {map, switchMap, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
 
-
   constructor(private db: AngularFirestore) {
   }
 
-  getCoord(PathNumber: number): Observable<any> {
-
-    console.log(PathNumber);
+  makeArray(): void {
     const route = [
     ];
 
     // route.map((q, i) => {
-    //     this.db.collection('/coordinates').doc('/Elbrus').collection('/routes').doc('/1').update({[i]: q});
+    //     this.db.collection('/coordinates').doc('/Karelia').collection('/routes').doc('/1').update({[i]: q});
     // });
+  }
 
+  getCoord(PathNumber: number): Observable<any> {
 
     switch (PathNumber) {
       case 0: {
@@ -45,8 +43,14 @@ export class MapService {
             .valueChanges();
           return coord.pipe();
       }
+      case 6: {
+        const coord = this.db.collection('/coordinates')
+          .doc('/Karelia')
+          .collection('/routes')
+          .valueChanges();
+        return coord.pipe();
+      }
     }
-
 
   }
 
