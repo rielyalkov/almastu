@@ -68,16 +68,19 @@
 }
 
 .head {
+  width: 70%;
   top:0;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
   position: fixed;
   z-index: 10000;
 
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
        box-shadow: 0 10px 6px -6px #777;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 
 .footer {
@@ -90,7 +93,7 @@
 }
 
 .mat-toolbar.mat-primary {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   color: #000000;
 }
 
