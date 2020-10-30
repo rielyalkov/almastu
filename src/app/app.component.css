@@ -18,6 +18,10 @@
 
 @media only screen and (min-device-width: 620px) {
 
+  .head {
+    width: 70%;
+  }
+
   .threeDots {
     display: none;
   }
@@ -68,7 +72,6 @@
 }
 
 .head {
-  width: 70%;
   top:0;
   left: 0;
   right: 0;
