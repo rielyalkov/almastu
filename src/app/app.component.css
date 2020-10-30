@@ -89,4 +89,9 @@
   color: #0000cd;
 }
 
+.mat-toolbar.mat-primary {
+  background: #ffffff;
+  color: #000000;
+}
+
 

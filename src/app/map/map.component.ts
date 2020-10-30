@@ -43,7 +43,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
   ngOnInit(): void {
 
     document.getElementById('mapHTML').innerHTML =
-      "<div id='map' style='height: 500px;' leaflet></div>";
+      '<div id=\'map\' style=\'height: 500px; border-radius: 5px; position: relative; z-index: 500\' leaflet></div>';
 
     const lIcon = L.icon({
       iconUrl: 'assets/images/location.svg',
@@ -72,6 +72,16 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
       iconAnchor:   [12, 24],
       popupAnchor:  [0, -26]
     });
+    const tentIcon = L.icon({
+      iconUrl: 'assets/images/tent.svg',
+      iconSize:     [24, 24],
+      shadowUrl: 'assets/images/shadow.svg',
+      shadowAnchor: [8, 24],
+      shadowSize: [24, 24],
+      iconAnchor:   [12, 24],
+      popupAnchor:  [0, -26]
+    });
+
 
     // @ts-ignore
     this.Map = L.map('map', {drawControl: false, fullscreenControl: true}).setView([60.000, 100.000], 3);
@@ -135,7 +145,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
 
                 for (let k = 1; k < coordinatesArray.length; k++) {
                   if (coordinatesArray[k][2]) {
-                    const point = L.marker(coordinatesArray[k], {icon: lIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
+                    const point = L.marker(coordinatesArray[k], {icon: tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
                     that.markers.addLayer(point);
                     console.log(coordinatesArray[k][2]);
                   }
