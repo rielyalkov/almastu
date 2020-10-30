@@ -10,7 +10,6 @@ import {MapService} from './map/mapService/map-service.service';
 export class AppComponent implements OnInit {
 
   title = 'almastu';
-  showFiller = false;
 
 
     constructor(
@@ -22,12 +21,12 @@ export class AppComponent implements OnInit {
       // this.router.navigateByUrl('');
     }
 
-    navigateToAbout() : void {
+    navigateToAbout(): void {
       this.router.navigateByUrl('/about');
       this.service.makeArray();
     }
 
-    navigateToMain() : void {
+    navigateToMain(): void {
       this.router.navigateByUrl('');
     }
 

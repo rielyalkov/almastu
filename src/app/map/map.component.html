@@ -1,4 +1,3 @@
-
 <mat-radio-group
   aria-labelledby="example-radio-group-label"
   [(ngModel)]="favoriteSeason">
@@ -10,9 +9,22 @@
   </mat-radio-button>
 </mat-radio-group>
 
-<div class="align">
-  <div id="mapHTML">
-  </div>
-</div>
+  <div id="mapHTML"></div>
 
+<table class="legends">
+  <tbody>
+  <tr>
+    <td class="tdimg"><img src="assets/images/location.svg" width="25" /></td>
+    <td class="tdtxt"> — область походов</td>
+    <td class="tdimg"><img src="assets/images/office.svg" width="25" /></td>
+    <td class="tdtxt"> — начало маршрута</td>
+  </tr>
+  <tr>
+    <td class="tdimg"><img src="assets/images/tent.svg" width="25" /></td>
+    <td class="tdtxt"> — привал</td>
+    <td class="tdimg"><img src="assets/images/arrived.svg" width="25" /></td>
+    <td class="tdtxt"> — конец маршрута</td>
+  </tr>
+  </tbody>
+</table>
 

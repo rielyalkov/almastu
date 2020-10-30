@@ -73,6 +73,7 @@
   right:0;
   position: fixed;
   z-index: 10000;
+  opacity: 0.8;
 
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
@@ -86,6 +87,11 @@
 
 .body {
   color: #0000cd;
+}
+
+.mat-toolbar.mat-primary {
+  background: #ffffff;
+  color: #000000;
 }
 
 
