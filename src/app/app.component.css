@@ -73,11 +73,11 @@
   right:0;
   position: fixed;
   z-index: 10000;
-  opacity: 0.8;
 
   -webkit-box-shadow: 0 10px 6px -6px #777;
   -moz-box-shadow: 0 10px 6px -6px #777;
        box-shadow: 0 10px 6px -6px #777;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .footer {
@@ -90,8 +90,9 @@
 }
 
 .mat-toolbar.mat-primary {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.5);
   color: #000000;
 }
+
 
 
