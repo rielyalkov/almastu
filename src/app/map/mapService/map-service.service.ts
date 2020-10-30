@@ -51,7 +51,6 @@ export class MapService {
         return coord.pipe();
       }
     }
-
   }
 
 }
