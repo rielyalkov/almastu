@@ -8,7 +8,6 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
 import './Leaflet.Fullscreen.js';
 
-
 export interface CoordModel {
   route: string;
 }
