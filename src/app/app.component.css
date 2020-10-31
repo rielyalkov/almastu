@@ -14,11 +14,6 @@
 }
 
 @media only screen and (min-device-width: 620px) {
-
-  .head {
-    width: 70%;
-  }
-
   .threeDots {
     display: none;
   }
@@ -58,7 +53,8 @@
 }
 
 .static {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 70px;
 }
 
@@ -68,11 +64,11 @@
 }
 
 .head {
+  width: 100%;
   top:0;
   left: 0;
   right: 0;
-  margin-right: auto;
-  margin-left: auto;
+  margin: auto;
   position: fixed;
   z-index: 10000;
 
@@ -82,13 +78,8 @@
   border-radius: 0 0 10px 10px;
 }
 
-.footer {
-  left: 0;
-  right: 0;
-}
-
 .body {
-  color: #0000cd;
+  color: white;
 }
 
 .mat-toolbar.mat-primary {
