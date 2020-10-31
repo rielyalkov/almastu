@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapRoutingModule } from './map-routing.module';
-import {MapComponent} from './map.component';
+import {MapComponent} from './map-component/map.component';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
