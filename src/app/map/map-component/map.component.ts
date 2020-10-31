@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-draw';
-import {MatRadioButton, MatRadioChange} from '@angular/material/radio';
-import {MapService} from '../mapService/map-service.service';
-import {map, takeUntil, tap} from 'rxjs/operators';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { MatRadioChange } from '@angular/material/radio';
+import { MapService } from '../mapService/map-service.service';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
 import '../Leaflet.Fullscreen.js';
-import {Subject} from 'rxjs';
+import { Subject } from 'rxjs';
 import * as values from '../MapDefinedValues';
 
 @Component({
@@ -15,16 +15,16 @@ import * as values from '../MapDefinedValues';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
+export class MapComponent implements OnInit, OnDestroy{
 
   // tslint:disable-next-line:variable-name
   constructor(private _mapService: MapService,
               private db: AngularFirestore,
-) {
-  }
+              ) {}
+
   private Map;
 
-  favoriteSeason = 'Географическая карта';
+  selectedMap = 'Географическая карта';
   seasons: string[] = ['Географическая карта', 'Топографическая карта'];
 
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
@@ -38,7 +38,6 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
   routeColors = ['#D2691E', '#366578', '#B22222', '#006400'];
 
   private $destroy = new Subject<boolean>();
-
 
   ngOnInit(): void {
 
@@ -134,7 +133,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     ).subscribe();
   }
 
-  change(event: MatRadioChange): void {
+  changeMapStyle(event: MatRadioChange): void {
     switch (event.value) {
       case ('Топографическая карта'):
         this.mapStyleDefine(this.OpenTopoMap);
@@ -152,11 +151,7 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit{
     }).addTo(this.Map);
   }
 
-  ngAfterViewInit(): void {
-  }
-
   ngOnDestroy(): void {
     this.$destroy.next(true);
   }
-
 }

@@ -1,10 +1,9 @@
 <mat-radio-group
-  aria-labelledby="example-radio-group-label"
-  [(ngModel)]="favoriteSeason">
+  [(ngModel)]="selectedMap">
   <mat-radio-button *ngFor="let season of seasons"
                     [value]="season"
                     class="mat-rad"
-                    (change)="change($event)">
+                    (change)="changeMapStyle($event)">
     {{season}}
   </mat-radio-button>
 </mat-radio-group>
@@ -12,19 +11,27 @@
   <div id="mapHTML"></div>
 
 <table class="legends">
-  <tbody>
   <tr>
-    <td class="tdimg"><img src="../../../assets/images/location.svg" width="25" /></td>
-    <td class="tdtxt"> — область походов</td>
-    <td class="tdimg"><img src="../../../assets/images/office.svg" width="25" /></td>
-    <td class="tdtxt"> — начало маршрута</td>
+    <td class="td__img">
+      <img src="../../../assets/images/location.svg" width="25"  alt="icon"/>
+    </td>
+    <td class="td__txt"> — область походов</td>
+
+    <td class="td__img">
+      <img src="../../../assets/images/office.svg" width="25" alt="icon"/>
+    </td>
+    <td class="td__txt"> — начало маршрута</td>
   </tr>
   <tr>
-    <td class="tdimg"><img src="../../../assets/images/tent.svg" width="25" /></td>
-    <td class="tdtxt"> — привал</td>
-    <td class="tdimg"><img src="../../../assets/images/arrived.svg" width="25" /></td>
-    <td class="tdtxt"> — конец маршрута</td>
+    <td class="td__img">
+      <img src="../../../assets/images/tent.svg" width="25" alt="icon"/>
+    </td>
+    <td class="td__txt"> — ночевка</td>
+
+    <td class="td__img">
+      <img src="../../../assets/images/arrived.svg" width="25" alt="icon"/>
+    </td>
+    <td class="td__txt"> — конец маршрута</td>
   </tr>
-  </tbody>
 </table>
 

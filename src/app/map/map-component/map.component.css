@@ -77,11 +77,11 @@ table.legends td {
   height: 35px;
 }
 
-.tdimg {
+.td__img {
   width: 25px;
   text-align: right;
 }
 
-.tdtxt {
+.td__txt {
   text-align: left;
 }
