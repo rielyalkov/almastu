@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './pages/about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { MapComponent } from './map/map-component/map.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { ContactsComponent } from './contacts/contacts.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import {AuxiliaryComponent} from './auxiliary/auxiliary.component';
 
 
 const routes: Routes = [
@@ -14,25 +14,30 @@ const routes: Routes = [
     component: MainPageComponent
   },
   {
-    path: 'about',
-    component: AboutComponent
+    path: '',
+    component: AuxiliaryComponent,
+    children: [
+      {
+        path: 'about',
+        component: AboutComponent
+      },
+      {
+        path: 'map',
+        loadChildren: () => import('./pages/map/map.module').then(m => m.MapModule)
+      },
+      {
+        path: 'gallery',
+        component: GalleryComponent
+      },
+      {
+        path: 'contacts',
+        component: ContactsComponent
+      },
+      ]
   },
-  {
-    path: 'map',
-    loadChildren: () => import('./map/map.module').then(m => m.MapModule)
-  },
-  {
-    path: 'gallery',
-    component: GalleryComponent
-  },
-  {
-    path: 'contacts',
-    component: ContactsComponent
-  },
-  {
-    path: '**',
-    component: MainPageComponent
-  },
+
+
+
 
 
 ];
