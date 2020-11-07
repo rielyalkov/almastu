@@ -7,7 +7,6 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import {AuxiliaryComponent} from './auxiliary/auxiliary.component';
 
-
 const routes: Routes = [
   {
     path: '',
@@ -35,11 +34,6 @@ const routes: Routes = [
       },
       ]
   },
-
-
-
-
-
 ];
 
 @NgModule({
