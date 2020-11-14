@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MapService } from './pages/map/mapService/map-service.service';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'root',
@@ -12,5 +13,6 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+      firebase.analytics();
     }
 }
