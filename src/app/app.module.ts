@@ -37,18 +37,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AboutComponent } from './about/about.component';
+import { AboutComponent } from './pages/about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { GalleryComponent } from './gallery/gallery.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { SongComponent } from './about/song/song.component';
-import { LogotypeComponent } from './about/logotype/logotype.component';
-import { DevizComponent } from './about/deviz/deviz.component';
+import { GalleryComponent } from './pages/gallery/gallery.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { SongComponent } from './pages/about/song/song.component';
+import { LogotypeComponent } from './pages/about/logotype/logotype.component';
+import { DevizComponent } from './pages/about/deviz/deviz.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -70,7 +71,8 @@ const config = {
     ContactsComponent,
     SongComponent,
     LogotypeComponent,
-    DevizComponent
+    DevizComponent,
+    AuxiliaryComponent
   ],
     imports: [
         BrowserModule,

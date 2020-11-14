@@ -8,7 +8,6 @@
 }
 
 #mapHTML {
-  border-radius: 200px;
   position: relative;
   z-index: 500
 }
@@ -22,7 +21,7 @@
 }
 
 ::ng-deep.leaflet-control-fullscreen a {
-  background:#fff url(../../../assets/images/fullscreen.png) no-repeat 0 0;
+  background:#fff url(../../../../assets/images/fullscreen.png) no-repeat 0 0;
   background-size:26px 52px;
 }
 ::ng-deep.leaflet-touch .leaflet-control-fullscreen a {
@@ -56,7 +55,7 @@
 (-webkit-min-device-pixel-ratio:2),
 (min-resolution:192dpi) {
   .leaflet-control-fullscreen a {
-    background-image:url(../../../assets/images/fullscreen@2x.png);
+    background-image:url(../../../../assets/images/fullscreen@2x.png);
   }
 }
 

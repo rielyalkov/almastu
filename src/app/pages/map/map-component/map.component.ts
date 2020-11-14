@@ -42,7 +42,7 @@ export class MapComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
 
     document.getElementById('mapHTML').innerHTML =
-      '<div id=\'map\' style=\'height: 500px; border-radius: 5px; position: relative; z-index: 500\' leaflet></div>';
+      '<div id=\'map\' style=\'height: 500px; border-radius: 10px; position: relative; z-index: 500\' leaflet></div>';
 
     // @ts-ignore
     this.Map = L.map('map', {drawControl: false, fullscreenControl: true}).setView([60.000, 100.000], 3);

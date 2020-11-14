@@ -1,0 +1,33 @@
+<div class="content">
+  <header class="row">
+    <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobile_menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-button class="class-elements left" (click)=navigateToAbout()>О клубе</button>
+    <button mat-button class="class-elements" routerLink="/map">Карта</button>
+    <div class="img-board">
+      <img  src='./favicon.ico' height=50px [matMenuTriggerFor]="logo_menu" alt="logo">
+    </div>
+    <button mat-button class="class-elements" routerLink="/gallery">Фотогалерея</button>
+    <button mat-button class="class-elements right" routerLink="/contacts">Контакты</button>
+  </header>
+  <div class="page-content">
+    <mat-card>
+      <router-outlet></router-outlet>
+    </mat-card>
+  </div>
+</div>
+
+
+<mat-menu #mobile_menu="matMenu">
+  <button mat-menu-item (click)=navigateToAbout()>О клубе</button>
+  <button mat-menu-item routerLink="/map">Карта</button>
+  <button mat-menu-item routerLink="/gallery">Фотогалерея</button>
+  <button mat-menu-item routerLink="/contacts">Контакты</button>
+</mat-menu>
+
+<mat-menu #logo_menu="matMenu">
+  <button mat-menu-item (click)=navigateToMain()>Главная</button>
+  <button mat-menu-item (click)=navigateToAbout()>Про нашу эмблему</button>
+</mat-menu>
+
