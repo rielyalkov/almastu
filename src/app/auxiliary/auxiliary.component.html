@@ -23,7 +23,7 @@
     <button mat-button class="class-elements" (click)=navigateToAbout()>О клубе</button>
     <button mat-button class="class-elements" routerLink="/map">Карта</button>
     <div class="img-board">
-      <img src='./favicon.ico' height=80px [matMenuTriggerFor]="logo_menu">
+      <img src='./favicon.ico' height=60px [matMenuTriggerFor]="logo_menu">
       <mat-menu #logo_menu="matMenu">
         <button mat-menu-item (click)=navigateToMain()>Главная</button>
         <button mat-menu-item (click)=navigateToAbout()>Про нашу эмблему</button>
@@ -33,7 +33,12 @@
     <button mat-button class="class-elements" routerLink="/contacts">Контакты</button>
   </header>
 
-    <router-outlet></router-outlet>
+  <div class="page-content">
+    <mat-card>
+      <router-outlet></router-outlet>
+    </mat-card>
+  </div>
+
 
 </div>
 
