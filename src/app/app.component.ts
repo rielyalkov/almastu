@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { MapService } from './pages/map/mapService/map-service.service';
 import * as firebase from 'firebase';
+import {environment} from '../environments/environment.prod';
+
+firebase.initializeApp(environment.firebase);
 
 @Component({
   selector: 'root',
