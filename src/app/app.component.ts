@@ -8,11 +8,8 @@ import { MapService } from './pages/map/mapService/map-service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
     constructor(
     ) { }
-
-    title = 'almastu';
 
     ngOnInit(): void {
     }

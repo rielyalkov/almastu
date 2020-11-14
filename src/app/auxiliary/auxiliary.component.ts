@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MapService} from '../pages/map/mapService/map-service.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
 
 @Component({
   selector: 'app-auxiliary',
@@ -9,12 +11,12 @@ import {MapService} from '../pages/map/mapService/map-service.service';
 })
 export class AuxiliaryComponent implements OnInit {
 
-  constructor(
-    private router: Router,
-    private service: MapService
-  ) { }
-
-  title = 'almastu';
+  constructor(iconRegistry: MatIconRegistry,
+              sanitizer: DomSanitizer,
+              private router: Router,
+              private service: MapService
+  ) {
+  }
 
   ngOnInit(): void {
   }
