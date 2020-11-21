@@ -36,6 +36,16 @@
   }
 }
 
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: url(../../assets/images/2.jpg) no-repeat center center fixed;
+  /*background: #f8f8f8 no-repeat center center fixed;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .row {
   display: grid;
   grid-template-rows: 1fr;
