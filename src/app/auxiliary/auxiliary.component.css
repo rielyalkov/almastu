@@ -47,6 +47,12 @@ body {
   background-size: cover;
 }
 
+.fimg {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+}
+
 .row {
   display: grid;
   grid-template-rows: 1fr;

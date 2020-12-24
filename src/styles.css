@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
 * {
+  font-family: "JetBrains Mono", monospace;
   margin: 0;
   padding: 0;
+}
+
+
+#floating {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.fcb {
+  margin: 1%;
+  font-size: 30pt;
+  position: absolute;
+  cursor: pointer;
 }

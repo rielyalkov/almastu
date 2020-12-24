@@ -2,7 +2,9 @@
 .hvrbox * {
   box-sizing: border-box;
 }
+
 .hvrbox {
+  border-radius: 4px;
   position: relative;
   display: inline-block;
   overflow: hidden;
