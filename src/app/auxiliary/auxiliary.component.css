@@ -95,7 +95,7 @@ mat-card {
 
 .img-board {
   margin: 5px auto;
-  z-index: 500;
+  z-index: 5;
   display: flex;
   justify-content: center;
 
