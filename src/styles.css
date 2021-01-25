@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Product+Sans:wght@500&display=swap');
 
 * {
-  font-family: "JetBrains Mono", monospace;
   margin: 0;
   padding: 0;
 }
