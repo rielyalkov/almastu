@@ -8,10 +8,13 @@
 
 
 #floating {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  background-color: rgba(0, 0, 0, 0);
   position: absolute;
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: visibility .3s, opacity .3s linear, background-color .3s linear;
   top: 0;
   left: 0;
   height: 100vh;

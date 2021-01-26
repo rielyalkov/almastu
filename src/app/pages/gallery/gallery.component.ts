@@ -11,7 +11,9 @@ export class GalleryComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   open_floating(file) {
-    document.getElementById('floating').style.display = 'flex';
+    document.getElementById('floating').style.opacity = '1';
+    document.getElementById('floating').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    document.getElementById('floating').style.visibility = 'visible';
     document.getElementById('fimg').setAttribute('src', file);
   }
 
