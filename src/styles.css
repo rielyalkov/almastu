@@ -18,6 +18,18 @@
   width: 100vw;
 }
 
+#fimg {
+  margin-right: auto;
+  margin-left: auto;
+  align-self: center;
+  border-radius: 4px;
+  height: 30vw;
+}
+
+.wide {
+  max-height: 20vw;
+}
+
 .fcb {
   margin: 1%;
   font-size: 30pt;

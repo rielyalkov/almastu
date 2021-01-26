@@ -9,8 +9,9 @@ export class GalleryComponent implements OnInit {
 
   constructor() {}
 
+  // tslint:disable-next-line:typedef
   open_floating(file) {
-    document.getElementById('floating').style.display = 'block';
+    document.getElementById('floating').style.display = 'flex';
     document.getElementById('fimg').setAttribute('src', file);
   }
 
