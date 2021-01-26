@@ -8,8 +8,9 @@
   position: relative;
   display: inline-block;
   overflow: hidden;
-  max-width: 100%;
+  max-width: 30%;
   height: auto;
+  margin: 1%;
 }
 .hvrbox img {
   max-width: 100%;
