@@ -8,6 +8,7 @@
 
 
 #floating {
+  overflow: hidden;
   display: flex;
   background-color: rgba(0, 0, 0, 0);
   position: absolute;
