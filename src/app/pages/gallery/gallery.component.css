@@ -63,3 +63,9 @@
 .hvrbox.active .hvrbox-text_mobile {
   display: block;
 }
+
+.gallery_items {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
