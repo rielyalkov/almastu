@@ -64,7 +64,6 @@ export class MapComponent implements OnInit, OnDestroy{
     for (const aaa of this.MarkerArray) {
       aaa[0].on('click', (e) => {
         const Zoom = that.Map.getZoom();
-        console.log(e);
         // @ts-ignore
         that.Map.setView(e.latlng, 9);
       });
@@ -92,45 +91,47 @@ export class MapComponent implements OnInit, OnDestroy{
   buildRoutesMarkers(i): void {
     let routesArrays = [];
     let coordinatesArray = [];
-    this._mapService.getCoord(i).pipe(
-      takeUntil(this.$destroy),
-      map(q => routesArrays = q),
-      tap(() => {
-        for (let j = 0; j < routesArrays.length; j++) {
-          coordinatesArray = Object.values(routesArrays[j]);
+    try {
+      this._mapService.getCoord(i).pipe(
+        takeUntil(this.$destroy),
+        map(q => routesArrays = q),
+        tap(() => {
+          for (let j = 0; j < routesArrays.length; j++) {
+            coordinatesArray = Object.values(routesArrays[j]);
 
-          // @ts-ignore
-          const line = L.polyline(coordinatesArray, {color: this.routeColors[j], snakingSpeed: 200});
-          line.bindPopup('<b>Маршрут</b>');
+            // @ts-ignore
+            const line = L.polyline(coordinatesArray, {color: this.routeColors[j], snakingSpeed: 200});
+            line.bindPopup('<b>Маршрут</b>');
 
-          const markFirst = L.marker(coordinatesArray[0], {icon: values.startIcon});
-          if (coordinatesArray[0][2]) {
-            markFirst.bindPopup(`${coordinatesArray[0][2]}`);
-          } else {
-            markFirst.bindPopup('<b>Начало Маршрута</b>');
-          }
-
-          const markLast = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: values.endIcon})
-            .bindPopup('<b>Конец Маршрута</b>');
-
-          console.log(this.Map.getBounds().contains(markFirst.getLatLng()));
-
-          this.markers = L.layerGroup([markFirst, line, markLast]);
-
-          for (let k = 1; k < coordinatesArray.length; k++) {
-            if (coordinatesArray[k][2]) {
-              const point = L.marker(coordinatesArray[k], {icon: values.tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
-              this.markers.addLayer(point);
-              console.log(coordinatesArray[k][2]);
+            const markFirst = L.marker(coordinatesArray[0], {icon: values.startIcon});
+            if (coordinatesArray[0][2]) {
+              markFirst.bindPopup(`${coordinatesArray[0][2]}`);
+            } else {
+              markFirst.bindPopup('<b>Начало Маршрута</b>');
             }
-          }
 
-          this.arrayOfAddedRoutes.push(this.markers);
-          this.markers.addTo(this.Map).snakeIn();
-        }
-        this.layerIsCreated = true;
-      })
-    ).subscribe();
+            const markLast = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: values.endIcon})
+              .bindPopup('<b>Конец Маршрута</b>');
+
+            console.log(this.Map.getBounds().contains(markFirst.getLatLng()));
+
+            this.markers = L.layerGroup([markFirst, line, markLast]);
+
+            for (let k = 1; k < coordinatesArray.length; k++) {
+              if (coordinatesArray[k][2]) {
+                const point = L.marker(coordinatesArray[k], {icon: values.tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
+                this.markers.addLayer(point);
+                console.log(coordinatesArray[k][2]);
+              }
+            }
+
+            this.arrayOfAddedRoutes.push(this.markers);
+            this.markers.addTo(this.Map).snakeIn();
+          }
+          this.layerIsCreated = true;
+        })
+      ).subscribe();
+    } catch (e) {}
   }
 
   changeMapStyle(event: MatRadioChange): void {
@@ -147,7 +148,7 @@ export class MapComponent implements OnInit, OnDestroy{
   mapStyleDefine(mapStyle): void {
     L.tileLayer(mapStyle, {
       maxZoom: 19,
-      attribution: 'Map data: &copy; <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     }).addTo(this.Map);
   }
 
