@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {MatIconRegistry} from '@angular/material/icon';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Router} from '@angular/router';
@@ -53,7 +53,6 @@ export class MainPageComponent implements OnInit, AfterContentInit {
     const pageY = event.pageY - (window.innerHeight / 2);
     const newValueX = this.width * pageX * -1 - 25;
     const newValueY = this.height * pageY * -1 - 50;
-    console.log(newValueX, newValueY);
     this.bodyElement.style.backgroundPositionX = newValueX + 'px';
     this.bodyElement.style.backgroundPositionY = newValueY + 'px';
   }

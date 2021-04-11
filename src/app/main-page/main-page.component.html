@@ -1,12 +1,23 @@
 <div class="general">
   <div id="main-body" (mousemove)="mouseParallax($event)">
+    <header class="main-header">
+      <img src="favicon.ico" alt="Наша клубная эмблема">
+      <div class="links">
+        <button mat-button routerLink="/about">О клубе</button>
+        <button mat-button routerLink="/map">Карта</button>
+        <button mat-button routerLink="/gallery">Фотогалерея</button>
+        <button mat-button routerLink="/contacts">Контакты</button>
+      </div>
+    </header>
     <div class="scrolldown-container" (click)="scroll_down()">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
     </div>
   </div>
-  <div class="content">
-    <p>hello</p>
+  <div class="content-container">
+    <div class="content">
+      <p>Привет, Мир!</p>
+    </div>
   </div>
 </div>
