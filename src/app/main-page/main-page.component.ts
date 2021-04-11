@@ -28,7 +28,11 @@ export class MainPageComponent implements OnInit, AfterContentInit {
   }
 
   scroll_down(): void {
-    window.scrollTo(0, document.body.scrollHeight);
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   ngAfterContentInit(): void {
