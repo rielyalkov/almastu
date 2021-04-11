@@ -40,7 +40,7 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 100vh;
   overflow-x: hidden;
-  background: url(../../assets/images/2.jpg) no-repeat center center fixed;
+  background: url(../../assets/images/background_auxiliary.png) no-repeat center center fixed;
   /*background: #f8f8f8 no-repeat center center fixed;*/
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, NgModule, OnInit} from '@angular/core';
+import { open_floating } from '../../../scripts/open_floating.js';
 
 @Component({
   selector: 'app-gallery',
@@ -6,18 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
-
   constructor() {}
-
-  // tslint:disable-next-line:typedef
-  open_floating(file) {
-    document.getElementById('floating').style.opacity = '1';
-    document.getElementById('floating').style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
-    document.getElementById('floating').style.visibility = 'visible';
-    document.getElementById('fimg').setAttribute('src', file);
-  }
 
   ngOnInit(): void {
   }
+
+  openFloating(file, alt): void {
+    open_floating(file, alt);
+  }
+
 
 }
