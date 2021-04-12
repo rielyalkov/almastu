@@ -1,5 +1,6 @@
-import {Component, Input, NgModule, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { open_floating } from '../../../scripts/open_floating.js';
+import { imageSet } from '../../../assets/images/imageSetup.js';
 
 @Component({
   selector: 'app-gallery',
@@ -10,6 +11,7 @@ export class GalleryComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    imageSet();
   }
 
   openFloating(file, alt): void {
