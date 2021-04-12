@@ -8,8 +8,15 @@
         <button mat-button routerLink="/gallery">Фотогалерея</button>
         <button mat-button routerLink="/contacts">Контакты</button>
       </div>
+      <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobile_menu">
+        <mat-icon>menu</mat-icon>
+      </button>
     </header>
-    <div class="scrolldown-container" (click)="scroll_down()">
+    <div class="title">
+      <h1>Алмасты</h1>
+      <h4>Туристский клуб</h4>
+    </div>
+    <div class="scrolldown-container" (click)="scroll_down()" id="scroll_down_container">
       <div class="chevron"></div>
       <div class="chevron"></div>
       <div class="chevron"></div>
@@ -21,3 +28,9 @@
     </div>
   </div>
 </div>
+<mat-menu #mobile_menu="matMenu">
+  <button mat-menu-item routerLink="/about">О клубе</button>
+  <button mat-menu-item routerLink="/map">Карта</button>
+  <button mat-menu-item routerLink="/gallery">Фотогалерея</button>
+  <button mat-menu-item routerLink="/contacts">Контакты</button>
+</mat-menu>

@@ -1,8 +1,4 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
-import {MatIconRegistry} from '@angular/material/icon';
-import {DomSanitizer} from '@angular/platform-browser';
-import {Router} from '@angular/router';
-import {MapService} from '../pages/map/mapService/map-service.service';
 
 @Component({
   selector: 'app-main-page',
@@ -12,19 +8,28 @@ import {MapService} from '../pages/map/mapService/map-service.service';
 export class MainPageComponent implements OnInit, AfterContentInit {
 
   movementStrength = 50;
-  height = this.movementStrength / window.innerHeight;
-  width = this.movementStrength / window.innerWidth;
+  mouseMoveHeight = this.movementStrength / window.innerHeight;
+  mouseMoveWidth = this.movementStrength / window.innerWidth;
+  screenWidth = screen.width;
+  screenHeight = screen.height;
+  screenAspectRatioR = this.gcd(screen.width, screen.height);
+  // @ts-ignore
+  screenAspectRatioX = screen.width / this.screenAspectRatioR;
+  // @ts-ignore
+  screenAspectRatioY = screen.height / this.screenAspectRatioR;
+  screenAspectRatio = `${this.screenAspectRatioX}:${this.screenAspectRatioY}`;
   bodyElement = null;
 
-  constructor(iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer,
-              private router: Router,
-              private service: MapService,
-  ) {
-
-  }
+  constructor() {}
 
   ngOnInit(): void {
+  }
+
+  gcd(a, b): void {
+    if (b === 0) {
+      return a;
+    }
+    return this.gcd(b, a % b);
   }
 
   scroll_down(): void {
@@ -37,23 +42,22 @@ export class MainPageComponent implements OnInit, AfterContentInit {
 
   ngAfterContentInit(): void {
     this.bodyElement = document.getElementById('main-body');
-  }
-
-  navigateToAbout(): void {
-    this.router.navigateByUrl('/about');
-    this.service.makeArray();
-  }
-
-  navigateToMain(): void {
-    this.router.navigateByUrl('');
+    const scrollDownContainer = document.getElementById('scroll_down_container');
+    if (this.screenWidth <= 620) {
+      scrollDownContainer.style.pointerEvents = 'none';
+    } // only manual scrolling on mobile devices
   }
 
   mouseParallax(event): void {
-    const pageX = event.pageX - (window.innerWidth / 2);
-    const pageY = event.pageY - (window.innerHeight / 2);
-    const newValueX = this.width * pageX * -1 - 25;
-    const newValueY = this.height * pageY * -1 - 50;
-    this.bodyElement.style.backgroundPositionX = newValueX + 'px';
-    this.bodyElement.style.backgroundPositionY = newValueY + 'px';
+    if (this.screenWidth > 1500 && this.screenHeight > 999) {
+      if (this.screenAspectRatio === '16:9' || '64:27') {
+        const pageX = event.pageX - (window.innerWidth / 2);
+        const pageY = event.pageY - (window.innerHeight / 2);
+        const newValueX = this.mouseMoveWidth * pageX * -1 - 25;
+        const newValueY = this.mouseMoveHeight * pageY * -1 - 50;
+        this.bodyElement.style.backgroundPositionX = newValueX + 'px';
+        this.bodyElement.style.backgroundPositionY = newValueY + 'px';
+      }
+    }
   }
 }
