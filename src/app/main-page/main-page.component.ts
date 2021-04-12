@@ -51,6 +51,7 @@ export class MainPageComponent implements OnInit, AfterContentInit {
   mouseParallax(event): void {
     if (this.screenWidth > 1500 && this.screenHeight > 999) {
       if (this.screenAspectRatio === '16:9' || '64:27') {
+        this.bodyElement.style.backgroundSize = 'calc(100% + 50px)';
         const pageX = event.pageX - (window.innerWidth / 2);
         const pageY = event.pageY - (window.innerHeight / 2);
         const newValueX = this.mouseMoveWidth * pageX * -1 - 25;

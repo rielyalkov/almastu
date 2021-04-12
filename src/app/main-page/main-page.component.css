@@ -8,11 +8,6 @@
     display: none;
   }
 
-  #main-body {
-    background: url(../../assets/images/background_main-compressed.png) no-repeat;
-    background-size: cover
-  }
-
   .main-header {
     height: 7.5vh;
     border-bottom-left-radius: .5em;
@@ -26,11 +21,6 @@
 
 @media only screen and (min-device-width: 620px) {
   /*Full version styles*/
-  #main-body {
-    background: url(../../assets/images/background_main-compressed.png) no-repeat;
-    background-size: calc(100% + 50px)
-  }
-
   .main-header {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
@@ -140,6 +130,8 @@
   z-index: 0;
   height: 100%;
   display: flex;
+  background: url(../../assets/images/background_main-compressed.png) no-repeat;
+  background-size: cover
 }
 
 .main-header {
