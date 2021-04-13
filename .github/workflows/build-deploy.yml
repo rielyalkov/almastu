@@ -11,10 +11,23 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Use cached node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Angular CLI
+        run: npm install npm install -g @angular/cli > /dev/null
       - name: Install Dependencies
         run: npm install
       - name: Build
-        run: npm run build --prod
+        run: ng build --prod
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
