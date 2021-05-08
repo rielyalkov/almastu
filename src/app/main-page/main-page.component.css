@@ -115,7 +115,7 @@
 
 .content-container {
   overflow-x: hidden;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, sans-serif;
   height: 100vh;
 
 }
@@ -130,7 +130,7 @@
   z-index: 0;
   height: 100%;
   display: flex;
-  background: url(../../assets/images/background_main-compressed.png) no-repeat;
+  background: url(../../assets/images/background_main.jpg) no-repeat;
   background-size: cover
 }
 
@@ -150,7 +150,7 @@
   align-self: center;
   margin-left: auto;
   text-align: center;
-  font-family: "Product Sans", "Helvetica Neue", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 150%;
   top: 50%;
   left: 50%;
