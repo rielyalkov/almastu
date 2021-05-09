@@ -50,6 +50,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
+import { LoginComponent } from './login/login.component';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -72,7 +73,8 @@ const config = {
     SongComponent,
     LogotypeComponent,
     DevizComponent,
-    AuxiliaryComponent
+    AuxiliaryComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

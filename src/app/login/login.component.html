@@ -1,0 +1,28 @@
+<div class=general-login>
+  <mat-card class="auth-card">
+    <div class=login-title>Вход</div>
+    <p>
+      <mat-form-field appearance=outline id=username-field class=field>
+        <mat-label>Имя пользователя</mat-label>
+        <label>
+          <input matInput>
+        </label>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance=outline id=password-field class=field>
+        <mat-label>Пароль</mat-label>
+        <label>
+          <input matInput [type]="hide ? 'password' : 'text'">
+        </label>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </p>
+    <button mat-stroked-button>Войти</button>
+  </mat-card>
+  <button mat-fab class=fab routerLink="/">
+    <mat-icon>home</mat-icon>
+  </button>
+</div>
