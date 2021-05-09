@@ -10,6 +10,7 @@ export class AboutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    document.getElementById('logo_menu').style.display = 'none';
   }
 
 }
