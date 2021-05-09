@@ -1,0 +1,66 @@
+.general-login {
+  height: 100vh;
+  background: url(../../assets/images/background_login.jpg) center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.fab {
+  left: 50vw;
+  top: 15vh;
+  transform: translate(-50%,-50%);
+  position: absolute;
+}
+
+.auth-card {
+  left: 50vw;
+  top: 50vh;
+  width: fit-content;
+  transform: translate(-50%,-50%);
+  background-color: rgba(255,255,255,.85);
+}
+
+.login-title {
+  margin: 10%;
+  font-family: "Open Sans", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.auth-card button {
+  margin: 10%;
+}
+
+.field {
+  width: 10vw
+}
+
+.mat-card {
+  padding: 1%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1em;
+}
+
+::ng-deep #username-field .mat-form-field-wrapper {
+  margin-top: 0;
+  margin-bottom: -1em;
+}
+
+::ng-deep #password-field .mat-form-field-wrapper {
+  margin-bottom: -1.25em;
+}
+
+.mat-input-element {
+  caret-color: rgba(0,0,0,.5);
+}
+
+::ng-deep .general-login * {
+  color: rgba(0,0,0,.5);
+}

@@ -7,6 +7,9 @@
         <button mat-button routerLink="/map">Карта</button>
         <button mat-button routerLink="/gallery">Фотогалерея</button>
         <button mat-button routerLink="/contacts">Контакты</button>
+        <button mat-icon-button routerLink="/login">
+          <mat-icon>login</mat-icon>
+        </button>
       </div>
       <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobile_menu">
         <mat-icon>menu</mat-icon>
@@ -33,4 +36,5 @@
   <button mat-menu-item routerLink="/map">Карта</button>
   <button mat-menu-item routerLink="/gallery">Фотогалерея</button>
   <button mat-menu-item routerLink="/contacts">Контакты</button>
+  <button mat-menu-item routerLink="/login">Войти</button>
 </mat-menu>

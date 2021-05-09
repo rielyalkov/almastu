@@ -5,7 +5,8 @@ import { AboutComponent } from './pages/about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
-import {AuxiliaryComponent} from './auxiliary/auxiliary.component';
+import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       },
       ]
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 ];
 
 @NgModule({
