@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
+import { auth as fireAuth } from 'firebase';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 
@@ -19,22 +18,33 @@ export class LoginComponent {
 
   signIn(usernameRaw: string, password: string): void {
     const username = usernameRaw + '@almastu-dmd.web.app';
-    firebase.auth().signInWithEmailAndPassword(username, password).then(() => {
-      this.route.navigate(['/']).then();
-    })
-      .catch((error) => {
-        const errorCode = error.code;
-        let message = 'неизвестная проблема';
-        if (errorCode === 'auth/user-not-found') {
-          message = 'пользователь не найден';
-        } else if (errorCode === 'auth/wrong-password' && password !== '') {
-          message = 'неправильный пароль';
-        } else if (errorCode === 'auth/wrong-password' && password === '') {
-          message = 'введите пароль в поле!';
-        } else if (errorCode === 'auth/invalid-email') {
-          message = 'введите имя пользователя в поле!'; }
-        this.snackBar.open('Ошибка: ' + message, null, {duration: 5000});
-      });
+    fireAuth().setPersistence(fireAuth.Auth.Persistence.LOCAL).then(() => {
+      fireAuth().signInWithEmailAndPassword(username, password).then(() => {
+        this.route.navigate(['/panel']).then();
+      })
+        .catch((error) => {
+          const errorCode = error.code;
+          let message;
+          switch (errorCode) {
+            case 'auth/wrong-password': {
+              if (password !== '') {
+                message = 'неправильный пароль';
+              } else {
+                message = 'введите пароль в поле!'; }
+              break; }
+            case 'auth/user-not-found': {
+              message = 'пользователь не найден';
+              break; }
+            case 'auth/invalid-email': {
+              message = 'введите имя пользователя в поле!';
+              break; }
+            default: {
+              message = errorCode;
+              break; }
+          }
+          this.snackBar.open('Ошибка: ' + message, null, {duration: 5000});
+        });
+    });
   }
 
 }

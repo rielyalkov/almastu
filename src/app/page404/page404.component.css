@@ -1,0 +1,33 @@
+.p404 {
+  background: url("https://sun9-38.userapi.com/impg/c858324/v858324442/140033/uH1dT4mpF-I.jpg?size=1333x1000&quality=96&sign=005f772722581112841142c381bca671&type=album") center;
+  height: 100vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.p404 .number {
+  text-align: center;
+  font-size: 4rem;
+}
+
+.p404 .text {
+  text-align: center;
+}
+
+a {
+  color: white;
+}
+
+.copyright {
+  bottom: 0;
+  font-size: smaller;
+  position: absolute;
+}

@@ -51,6 +51,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LoginComponent } from './login/login.component';
+import { PanelComponent } from './panel/panel.component';
+import { Page404Component } from './page404/page404.component';
+import { EditorInsertDialogComponent, EditorSheetComponent, NewsEditorComponent } from './panel/news-editor/news-editor.component';
+import { NewsComponent } from './news/news.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -74,7 +80,14 @@ const config = {
     LogotypeComponent,
     DevizComponent,
     AuxiliaryComponent,
-    LoginComponent
+    LoginComponent,
+    PanelComponent,
+    Page404Component,
+    NewsEditorComponent,
+    NewsComponent,
+    EditorSheetComponent,
+    EditorInsertDialogComponent,
+    NewsDetailComponent
   ],
     imports: [
         BrowserModule,
@@ -141,6 +154,7 @@ const config = {
 ],
   providers: [
     MatDatepickerModule,
+    MatBottomSheet
   ],
   bootstrap: [AppComponent]
 })
