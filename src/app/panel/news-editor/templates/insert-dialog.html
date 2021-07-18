@@ -1,0 +1,27 @@
+
+<!-- IN DEVELOPMENT-->
+
+<div *ngIf="choice === 'image'">
+  <mat-form-field appearance=outline id=link>
+    <mat-label>Ссылка на картинку</mat-label>
+    <input matInput placeholder="https://example.org/example.jpeg">
+  </mat-form-field>
+</div>
+<div *ngIf="choice === 'button'">
+  <mat-form-field appearance=outline id=title>
+    <mat-label>Заголовок кнопки</mat-label>
+    <input matInput placeholder="Перейти в нашу группу ВК">
+  </mat-form-field>
+  <mat-form-field appearance=outline id=ref>
+    <mat-label>Ссылка на страницу</mat-label>
+    <input matInput placeholder="https://vk.com/almastu_club">
+  </mat-form-field>
+  <section id=new-page>
+    <mat-checkbox>
+      <mat-label>Открыть в этой же вкладке</mat-label>
+      <mat-icon matSuffix>help_outline</mat-icon>
+    </mat-checkbox>
+  </section>
+</div>
+
+<!-- IN DEVELOPMENT-->

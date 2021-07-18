@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase/app';
-import 'firebase/analytics';
-import 'firebase/auth';
+import { initializeApp as fireInit, analytics as fireAnalytics } from 'firebase';
 import {environment} from '../environments/environment.prod';
 
-firebase.initializeApp(environment.firebase);
+fireInit(environment.firebase);
 
 @Component({
   selector: 'app-root',
@@ -16,6 +14,6 @@ export class AppComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-      firebase.analytics();
+      fireAnalytics();
     }
 }

@@ -28,13 +28,14 @@
     "leaflet-draw": "^1.0.4",
     "leaflet.polyline.snakeanim": "^0.2.0",
     "ngx-webstorage-service": "^4.1.0",
+    "Router": "^2.1.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.8",
-    "@angular/cli": "~10.0.8",
+    "@angular/cli": "^10.0.8",
     "@angular/compiler-cli": "~10.0.14",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",

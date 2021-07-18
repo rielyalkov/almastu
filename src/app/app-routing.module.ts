@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './pages/about/about.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -7,6 +8,14 @@ import { GalleryComponent } from './pages/gallery/gallery.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LoginComponent } from './login/login.component';
+import { PanelComponent } from './panel/panel.component';
+import { Page404Component } from './page404/page404.component';
+import {NewsDetailComponent} from './news/news-detail/news-detail.component';
+import {NewsComponent} from './news/news.component';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+const redirectLoggedInToPanel = () => redirectLoggedInTo(['panel']);
+
 
 const routes: Routes = [
   {
@@ -37,7 +46,28 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToPanel }
+  },
+  {
+    path: 'panel',
+    component: PanelComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+  {
+    path: 'news',
+    component: NewsComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'news/:id',
+    component: NewsDetailComponent
+  },
+  {
+    path: '**',
+    component: Page404Component
   }
 ];
 

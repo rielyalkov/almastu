@@ -34,7 +34,7 @@ export class MainPageComponent implements OnInit, AfterContentInit {
 
   scroll_down(): void {
     window.scrollTo({
-      top: document.body.scrollHeight,
+      top: window.innerHeight,
       left: 0,
       behavior: 'smooth'
     });
