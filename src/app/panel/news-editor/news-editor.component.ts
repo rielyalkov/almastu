@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-news-editor',
@@ -20,11 +23,22 @@ export class NewsEditorComponent implements OnInit {
     this.bottomSheet.open(EditorSheetComponent, {data: this.selection});
   }
 
-  recordSelection(): void{
+  recordSelection(): void {
     this.selection = window.getSelection();
   }
 
-  constructor(private bottomSheet: MatBottomSheet) { }
+  send(title, text): void {
+    const news = {
+      name: title,
+      html: text,
+      time: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    this.firestore.collection('news').add(news).then(() => {
+      this.snack.open('Новость загружена!', undefined, {duration: 1000});
+    });
+  }
+
+  constructor(private bottomSheet: MatBottomSheet, private firestore: AngularFirestore, private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     document.onselectionchange = () => this.recordSelection();

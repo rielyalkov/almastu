@@ -1,15 +1,15 @@
 <div id=general-editor>
   <mat-form-field appearance=outline id=news-title-field>
     <mat-label>Заголовок новости</mat-label>
-    <input matInput>
+    <input matInput #title>
   </mat-form-field>
   <mat-form-field appearance=outline id=news-field>
     <mat-label>Введите текст новости</mat-label>
-    <textarea matInput id=news-input (contextmenu)="onRightClick($event)"></textarea>
+    <textarea matInput id=news-input (contextmenu)="onRightClick($event)" #text ></textarea>
     <mat-hint>Подсказка: выделите текст и нажмите на правую кнопку мыши, чтобы стилизовать выбранное</mat-hint>
   </mat-form-field>
   <div id=editor-fab>
-    <button mat-fab matTooltip="Завершение редактирования и параметры публикации">
+    <button mat-fab matTooltip="Завершение редактирования и параметры публикации" (click)="send(title.value, text.value)">
       <mat-icon>done</mat-icon>
     </button>
   </div>
