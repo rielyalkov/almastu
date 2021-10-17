@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build and Deploy (prod)
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Build
-        run: ng build --prod
+        run: ng build -c production
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
