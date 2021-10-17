@@ -1,4 +1,5 @@
 import {AfterContentInit, Component, OnInit} from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-main-page',
@@ -19,6 +20,7 @@ export class MainPageComponent implements OnInit, AfterContentInit {
   screenAspectRatioY = screen.height / this.screenAspectRatioR;
   screenAspectRatio = `${this.screenAspectRatioX}:${this.screenAspectRatioY}`;
   bodyElement = null;
+  production = environment.production;
 
   constructor() {}
 
