@@ -1,5 +1,6 @@
-@import '~@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
+@import '@angular/material/theming';
+@include mat.core();
 
 $bv-brand: (
   50: #ffffff,
@@ -34,9 +35,9 @@ $bv-brand: (
   )
 );
 
-  $primary: mat-palette($bv-brand, 100);
-  $accent: mat-palette($bv-brand, 200);
+  $primary: mat.define-palette($bv-brand, 100);
+  $accent: mat.define-palette($bv-brand, 200);
 
-  $theme: mat-light-theme($primary, $accent);
+  $theme: mat.define-light-theme($primary, $accent);
 
-@include angular-material-theme($theme);
+@include mat.all-component-themes($theme);
