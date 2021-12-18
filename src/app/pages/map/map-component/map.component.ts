@@ -4,7 +4,7 @@ import 'leaflet-draw';
 import { MatRadioChange } from '@angular/material/radio';
 import { MapService } from '../mapService/map-service.service';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
 import '../Leaflet.Fullscreen.js';
 import { Subject } from 'rxjs';

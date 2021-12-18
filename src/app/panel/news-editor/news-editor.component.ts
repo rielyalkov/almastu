@@ -1,9 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-news-editor',
@@ -31,7 +30,7 @@ export class NewsEditorComponent implements OnInit {
     const news = {
       name: title,
       html: text,
-      time: firebase.firestore.FieldValue.serverTimestamp()
+      time: + new Date()
     };
     this.firestore.collection('news').add(news).then(() => {
       this.snack.open('Новость загружена!', undefined, {duration: 1000});

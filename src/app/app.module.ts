@@ -45,10 +45,11 @@ import { SongComponent } from './pages/about/song/song.component';
 import { LogotypeComponent } from './pages/about/logotype/logotype.component';
 import { DevizComponent } from './pages/about/deviz/deviz.component';
 import { FormsModule } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LoginComponent } from './login/login.component';
 import { PanelComponent } from './panel/panel.component';
@@ -130,7 +131,8 @@ const config = {
         MatPaginatorModule,
         FormsModule,
         AngularFireModule.initializeApp(config),
-        AngularFirestoreModule, // firestore
+        AngularFirestoreModule, // firestore,
+        AngularFireAnalyticsModule, // analytics
         AngularFireAuthModule, // auth
         AngularFireStorageModule
     ],
