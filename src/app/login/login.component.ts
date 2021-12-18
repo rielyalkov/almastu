@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
-import { auth as fireAuth } from 'firebase';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { getApp } from '@angular/fire/app';
 
 @Component({
   selector: 'app-login',
@@ -10,41 +11,47 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
 
+  auth = getAuth(getApp());
+
   constructor(
     private snackBar: MatSnackBar,
     private route: Router
-  ) { }
+  ) {
+  }
+
   hide = true;
 
   signIn(usernameRaw: string, password: string): void {
     const username = usernameRaw + '@almastu-dmd.web.app';
-    fireAuth().setPersistence(fireAuth.Auth.Persistence.LOCAL).then(() => {
-      fireAuth().signInWithEmailAndPassword(username, password).then(() => {
-        this.route.navigate(['/panel']).then();
-      })
-        .catch((error) => {
-          const errorCode = error.code;
-          let message;
-          switch (errorCode) {
-            case 'auth/wrong-password': {
-              if (password !== '') {
-                message = 'неправильный пароль';
-              } else {
-                message = 'введите пароль в поле!'; }
-              break; }
-            case 'auth/user-not-found': {
-              message = 'пользователь не найден';
-              break; }
-            case 'auth/invalid-email': {
-              message = 'введите имя пользователя в поле!';
-              break; }
-            default: {
-              message = errorCode;
-              break; }
+    signInWithEmailAndPassword(this.auth, username, password).then(() => {
+      this.route.navigate(['/panel']).then();
+    })
+      .catch((error) => {
+        const errorCode = error.code;
+        let message;
+        switch (errorCode) {
+          case 'auth/wrong-password': {
+            if (password !== '') {
+              message = 'неправильный пароль';
+            } else {
+              message = 'введите пароль в поле!';
+            }
+            break;
           }
-          this.snackBar.open('Ошибка: ' + message, null, {duration: 5000});
-        });
-    });
+          case 'auth/user-not-found': {
+            message = 'пользователь не найден';
+            break;
+          }
+          case 'auth/invalid-email': {
+            message = 'введите имя пользователя в поле!';
+            break;
+          }
+          default: {
+            message = errorCode;
+            break;
+          }
+        }
+        this.snackBar.open('Ошибка: ' + message, null, {duration: 5000});
+      });
   }
-
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { format_date } from '../../../scripts/date_formatter';
 import { Observable } from 'rxjs';
 import {tap} from 'rxjs/operators';
