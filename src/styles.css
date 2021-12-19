@@ -57,3 +57,7 @@
   text-align: center;
   width: 100%
 }
+
+.pointer {
+  cursor: pointer
+}

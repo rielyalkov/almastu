@@ -59,7 +59,6 @@ const routes: Routes = [
   {
     path: 'news',
     component: NewsComponent,
-    pathMatch: 'full',
   },
   {
     path: 'news/:id',

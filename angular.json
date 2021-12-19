@@ -10,7 +10,6 @@
       "projectType": "application",
       "schematics": {},
       "root": "",
-      "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
@@ -67,20 +66,29 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "almastu:build"
-          },
           "configurations": {
             "production": {
               "browserTarget": "almastu:build:production"
+            },
+            "development": {
+              "browserTarget": "almastu:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
