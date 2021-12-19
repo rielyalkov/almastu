@@ -1,11 +1,9 @@
-worka
-
-<!--<div class=newsElement>-->
-<!--  <div *ngIf="(doc | async).imageUrl !== undefined" class=newsElement-image-->
-<!--       [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + (doc | async).imageUrl + ')'">-->
-<!--    <img [src]="(doc | async).imageUrl" [alt]="(doc | async)">-->
-<!--  </div>-->
-<!--  <h3 class=newsElement-title>{{(doc | async).name}}</h3>-->
-<!--  <p class=newsElement-time>{{fd((doc | async).time)}}</p>-->
-<!--  <div class=newsElement-content [innerHTML]="(doc | async).html"></div>-->
-<!--</div>-->
+<div class=newsElement>
+  <div *ngIf="(doc | async).imageUrl !== undefined" class=newsElement-image
+       [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + (doc | async).imageUrl + ')'">
+    <img [src]="(doc | async).imageUrl" [alt]="(doc | async)">
+  </div>
+  <h3 class=newsElement-title>{{(doc | async).name}}</h3>
+  <p class=newsElement-time>{{fd((doc | async).time)}}</p>
+  <div class=newsElement-content [innerHTML]="(doc | async).html"></div>
+</div>

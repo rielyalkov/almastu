@@ -1,7 +1,7 @@
 <div id=news-general>
   <h1 id=news-title>Лента новостей</h1>
   <div id=newsfeed>
-    <div *ngFor="let doc of news | async" class=newsElement routerLink="/news/{{doc.ID}}">
+    <div *ngFor="let doc of news | async" class="newsElement pointer" routerLink="/news/{{doc.ID}}">
       <div *ngIf="doc.imageUrl !== undefined" class=newsElement-image
            [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + doc.imageUrl + ')'">
         <img [src]="doc.imageUrl" [alt]="doc.ID"></div>
@@ -12,3 +12,4 @@
     <p *ngIf="isEmpty" id=empty-label>Пока нет новостей</p>
   </div>
 </div>
+<router-outlet></router-outlet>
