@@ -1,4 +1,4 @@
-<div id=news-general>
+<div class=font>
   <h1 id=news-title>Лента новостей</h1>
   <div id=newsfeed>
     <div *ngFor="let doc of news | async" class="newsElement pointer" routerLink="/news/{{doc.ID}}">
