@@ -15,13 +15,18 @@ export class NewsDetailComponent implements OnInit {
 
   id: string;
   doc: Observable<News>;
+  loaded = false;
+  docLoaded: News;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get('id'));
       this.id = params.get('id');
     });
     this.doc = this.newsService.docData(this.route.snapshot.params.id);
+    this.doc.subscribe((v) => {
+      this.docLoaded = v;
+      this.loaded = true;
+    });
   }
   fd(date: any): string { return fd(date); }
 }
