@@ -1,9 +1,9 @@
-<main class="font">
-  <div *ngIf="(doc | async).imageUrl !== undefined" class=newsElement-image
-       [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + (doc | async).imageUrl + ')'">
-    <img [src]="(doc | async).imageUrl" [alt]="(doc | async)">
+<main class="font" *ngIf="loaded">
+  <div *ngIf="docLoaded.imageUrl !== undefined" class=newsElement-image
+       [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + docLoaded.imageUrl + ')'">
+    <img [src]="docLoaded.imageUrl" [alt]="(doc | async)">
   </div>
-  <h3 class=newsElement-title>{{(doc | async).name}}</h3>
-  <p class=newsElement-time>{{fd((doc | async).time)}}</p>
-  <div class=newsElement-content [innerHTML]="(doc | async).html"></div>
+  <h3 class=newsElement-title>{{docLoaded.name}}</h3>
+  <p class=newsElement-time>{{fd(docLoaded.time)}}</p>
+  <div class=newsElement-content [innerHTML]="docLoaded.html"></div>
 </main>
