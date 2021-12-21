@@ -1,4 +1,4 @@
-<body>
+<div class="body">
     <div class="content">
     <header class="row">
       <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobile_menu">
@@ -20,7 +20,7 @@
       <router-outlet></router-outlet>
     </mat-card>
   </div>
-</body>
+</div>
 
 <mat-menu #mobile_menu="matMenu">
   <button mat-menu-item (click)=navigateToAbout()>О клубе</button>

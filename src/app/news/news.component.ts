@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { NewsService } from './service/news.service';
 import { News, fd } from './service/news.service';
 import { tap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-news',

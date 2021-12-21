@@ -128,7 +128,7 @@
   top: 0;
   width: 100%;
   z-index: 0;
-  height: 100%;
+  height: 100vh;
   display: flex;
   background: url(../../assets/images/background_main.jpg) no-repeat;
   background-size: cover

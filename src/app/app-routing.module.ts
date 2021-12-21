@@ -57,10 +57,6 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'news',
-    component: NewsComponent,
-  },
-  {
     path: 'news/:id',
     component: NewsDetailComponent
   },
