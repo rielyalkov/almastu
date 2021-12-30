@@ -1,27 +1,18 @@
-
-<!-- IN DEVELOPMENT-->
-
-<div *ngIf="choice === 'image'">
+<main *ngIf="choice === 'image'" id=image>
   <mat-form-field appearance=outline id=link>
     <mat-label>Ссылка на картинку</mat-label>
-    <input matInput placeholder="https://example.org/example.jpeg">
+    <input matInput placeholder="https://example.org/example.jpeg" #imgLink>
   </mat-form-field>
-</div>
-<div *ngIf="choice === 'button'">
+  <button mat-stroked-button (click)="add_image(imgLink.value)">Добавить</button>
+</main>
+<main *ngIf="choice === 'link'" id=href>
   <mat-form-field appearance=outline id=title>
-    <mat-label>Заголовок кнопки</mat-label>
-    <input matInput placeholder="Перейти в нашу группу ВК">
+    <mat-label>Заголовок ссылки</mat-label>
+    <input matInput placeholder="Перейти в нашу группу ВК" #title>
   </mat-form-field>
   <mat-form-field appearance=outline id=ref>
     <mat-label>Ссылка на страницу</mat-label>
-    <input matInput placeholder="https://vk.com/almastu_club">
+    <input matInput placeholder="https://vk.com/almastu_club" #pageLink>
   </mat-form-field>
-  <section id=new-page>
-    <mat-checkbox>
-      <mat-label>Открыть в этой же вкладке</mat-label>
-      <mat-icon matSuffix>help_outline</mat-icon>
-    </mat-checkbox>
-  </section>
-</div>
-
-<!-- IN DEVELOPMENT-->
+  <button mat-stroked-button (click)="add_link(title.value, pageLink.value)">Добавить</button>
+</main>
