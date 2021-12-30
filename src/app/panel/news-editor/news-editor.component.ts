@@ -25,8 +25,10 @@ export class NewsEditorComponent implements OnInit {
     sheet.afterDismissed().subscribe((obj) => {
       const dialog = obj.dialog as MatDialogRef<EditorInsertDialogComponent>;
       dialog.afterClosed().subscribe((objDial) => {
-        const textToAdd = objDial.data;
-        this.text.nativeElement.value += textToAdd;
+        if (objDial.data) {
+          const textToAdd = objDial.data;
+          this.text.nativeElement.value += textToAdd;
+        }
       });
     });
   }
@@ -46,7 +48,8 @@ export class NewsEditorComponent implements OnInit {
     });
   }
 
-  constructor(private bottomSheet: MatBottomSheet, private firestore: AngularFirestore, private snack: MatSnackBar) { }
+  constructor(private bottomSheet: MatBottomSheet, private firestore: AngularFirestore, private snack: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     document.onselectionchange = () => this.recordSelection();
@@ -64,7 +67,8 @@ export class EditorSheetComponent implements OnInit {
     @Inject(MAT_BOTTOM_SHEET_DATA) public selection: string,
     private bs: MatBottomSheetRef,
     public dialog: MatDialog
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     if (this.selection.toString() !== '') {
@@ -93,7 +97,8 @@ export class EditorInsertDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<EditorInsertDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public choice: string,
-  ) { }
+  ) {
+  }
 
   add_image(link): void {
     const element = `<img src=${link} alt="Фото">`;
