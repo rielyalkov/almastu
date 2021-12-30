@@ -1,11 +1,11 @@
-<main *ngIf="choice === 'image'" id=image>
+<main *ngIf="choice === 'image'" class="addition">
   <mat-form-field appearance=outline id=link>
     <mat-label>Ссылка на картинку</mat-label>
     <input matInput placeholder="https://example.org/example.jpeg" #imgLink>
   </mat-form-field>
   <button mat-stroked-button (click)="add_image(imgLink.value)">Добавить</button>
 </main>
-<main *ngIf="choice === 'link'" id=href>
+<main *ngIf="choice === 'link'" class="addition">
   <mat-form-field appearance=outline id=title>
     <mat-label>Заголовок ссылки</mat-label>
     <input matInput placeholder="Перейти в нашу группу ВК" #title>
