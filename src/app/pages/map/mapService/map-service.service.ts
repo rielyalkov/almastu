@@ -10,6 +10,10 @@ export class MapService {
   constructor(private db: AngularFirestore) {
   }
 
+  getPlaces(): Observable<any> {
+    return this.db.collection('/places').valueChanges();
+  }
+
   makeArray(): void {
     const route = [];
 

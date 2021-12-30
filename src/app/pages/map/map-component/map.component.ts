@@ -9,6 +9,7 @@ import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
 import '../Leaflet.Fullscreen.js';
 import { Subject } from 'rxjs';
 import * as values from '../MapDefinedValues';
+import {LayerGroup} from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -18,9 +19,7 @@ import * as values from '../MapDefinedValues';
 export class MapComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:variable-name
-  constructor(private _mapService: MapService,
-              private db: AngularFirestore,
-  ) {
+  constructor(private _mapService: MapService) {
   }
 
   private Map;
@@ -31,7 +30,7 @@ export class MapComponent implements OnInit, OnDestroy {
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
   OpenStreetMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
   MarkerArray;
-  markers;
+  markers: LayerGroup;
   arrayOfAddedRoutes = [];
 
   layerIsCreated = false;
@@ -49,44 +48,10 @@ export class MapComponent implements OnInit, OnDestroy {
     this.Map = L.map('map', {drawControl: false, fullscreenControl: true}).setView([60.000, 100.000], 3);
 
     this.mapStyleDefine(this.OpenStreetMap);
-    this.MarkerArray = [
-      [L.marker([67.734720, 33.726110], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Хибины</b>')], // 0
-      [L.marker([55.259720, 59.792500], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Таганай</b>')], // 1
-      [L.marker([43.345830, 42.448610], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Эльбрус</b>')], // 2
-      [L.marker([56.949400, 32.838600], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Верхневолжские озера</b>')], // 3
-      [L.marker([56.427395, 28.820091], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Великая</b>')], // 4
-      [L.marker([67.500000, 66.000000], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Полярный Урал</b>')], // 5
-      [L.marker([66.114073, 32.439454], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Карелия Север</b>')], // 6
-      [L.marker([64.838539, 33.693727], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Карелия Центр</b>')], // 7
-      [L.marker([62.867714, 33.215538], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Карелия Юг</b>')], // 8
-      [L.marker([44.263300, 40.171900], {icon: values.lIcon}).addTo(this.Map).bindPopup('<b>Адыгея</b>')], // 9
-    ];
 
-    for (const aaa of this.MarkerArray) {
-      aaa[0].on('click', (e) => {
-        const Zoom = that.Map.getZoom();
-        // @ts-ignore
-        that.Map.setView(e.latlng, 9);
-      });
-    }
-
-    const that = this;
-
-    this.Map.on('zoom', function(): void {
-      const Zoom = this.getZoom();
-      for (let i = 0; i < that.MarkerArray.length; i++) {
-        if (Zoom >= 9 && this.getBounds().contains(that.MarkerArray[i][0].getLatLng()) && that.layerIsCreated === false) {
-
-          that.buildRoutesMarkers(i);
-
-        } else if (Zoom < 8 && that.layerIsCreated === true) {
-          for (const addedRoute of that.arrayOfAddedRoutes) {
-            addedRoute.remove();
-          }
-          that.layerIsCreated = false;
-        }
-      }
-    });
+    this._mapService.getPlaces()
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((places) => this.putPlaceMarkers(places));
   }
 
   buildRoutesMarkers(i): void {
@@ -127,6 +92,7 @@ export class MapComponent implements OnInit, OnDestroy {
             }
 
             this.arrayOfAddedRoutes.push(this.markers);
+            // @ts-ignore
             this.markers.addTo(this.Map).snakeIn();
           }
           this.layerIsCreated = true;
@@ -156,5 +122,46 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.$destroy.next(true);
+  }
+
+  putPlaceMarkers(places): void {
+    this.MarkerArray = [];
+    places.forEach((place) => {
+      this.MarkerArray.push({
+        scale: place.scale,
+        marker: L.marker([place.latlng._lat, place.latlng._long], {icon: values.lIcon})
+            .addTo(this.Map)
+            .bindPopup(`<b>${place.name}</b>`)
+            .on('click',
+              (event) => {
+                // @ts-ignore
+                this.Map.setView(event.latlng, place.scale);
+              })
+      });
+    });
+
+    this.setZoomSettings();
+  }
+
+  setZoomSettings(): void {
+    const that = this;
+    this.Map.on('zoom', function(): void {
+      const Zoom = this.getZoom();
+      for (let i = 0; i < that.MarkerArray.length; i++) {
+        if (
+          Zoom >= that.MarkerArray[i].scale &&
+          this.getBounds().contains(that.MarkerArray[i].marker.getLatLng()) &&
+          that.layerIsCreated === false
+        ) {
+          that.buildRoutesMarkers(i);
+
+        } else if (Zoom < that.MarkerArray[i].scale - 1 && that.layerIsCreated === true) {
+          for (const addedRoute of that.arrayOfAddedRoutes) {
+            addedRoute.remove();
+          }
+          that.layerIsCreated = false;
+        }
+      }
+    });
   }
 }
