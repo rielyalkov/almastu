@@ -23,13 +23,15 @@ export class NewsEditorComponent implements OnInit {
   openFormatMenu(): void {
     const sheet = this.bottomSheet.open(EditorSheetComponent, {data: this.selection});
     sheet.afterDismissed().subscribe((obj) => {
-      const dialog = obj.dialog as MatDialogRef<EditorInsertDialogComponent>;
-      dialog.afterClosed().subscribe((objDial) => {
-        if (objDial) {
-          const textToAdd = objDial.data;
-          this.text.nativeElement.value += textToAdd;
-        }
-      });
+      if (obj) {
+        const dialog = obj.dialog as MatDialogRef<EditorInsertDialogComponent>;
+        dialog.afterClosed().subscribe((objDial) => {
+          if (objDial) {
+            const textToAdd = objDial.data;
+            this.text.nativeElement.value += textToAdd;
+          }
+        });
+      }
     });
   }
 
