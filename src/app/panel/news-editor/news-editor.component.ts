@@ -1,6 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { serverTimestamp } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NewsEditorComponent implements OnInit {
 
+  @ViewChild('text') text;
   selection = null;
 
   onRightClick(event: MouseEvent): void {
@@ -20,7 +21,14 @@ export class NewsEditorComponent implements OnInit {
   }
 
   openFormatMenu(): void {
-    this.bottomSheet.open(EditorSheetComponent, {data: this.selection});
+    const sheet = this.bottomSheet.open(EditorSheetComponent, {data: this.selection});
+    sheet.afterDismissed().subscribe((obj) => {
+      const dialog = obj.dialog as MatDialogRef<EditorInsertDialogComponent>;
+      dialog.afterClosed().subscribe((objDial) => {
+        const textToAdd = objDial.data;
+        this.text.nativeElement.value += textToAdd;
+      });
+    });
   }
 
   recordSelection(): void {
@@ -68,8 +76,8 @@ export class EditorSheetComponent implements OnInit {
   }
 
   onTapped(event, choice): void {
-    this.dialog.open(EditorInsertDialogComponent, {data: choice});
-    this.bs.dismiss();
+    const dialog = this.dialog.open(EditorInsertDialogComponent, {data: choice});
+    this.bs.dismiss({dialog});
   }
 
 }
@@ -80,13 +88,20 @@ export class EditorSheetComponent implements OnInit {
   templateUrl: 'templates/insert-dialog.html',
   styleUrls: ['templates/insert-dialog.css']
 })
-export class EditorInsertDialogComponent implements OnInit {
+export class EditorInsertDialogComponent {
 
   constructor(
+    public dialogRef: MatDialogRef<EditorInsertDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public choice: string,
   ) { }
 
-  ngOnInit(): void {
-    console.log(this.choice);
+  add_image(link): void {
+    const element = `<img src=${link} alt="Фото">`;
+    this.dialogRef.close({data: element});
+  }
+
+  add_link(title, link): void {
+    const element = `<a href="${link}">${title}</a>`;
+    this.dialogRef.close({data: element});
   }
 }

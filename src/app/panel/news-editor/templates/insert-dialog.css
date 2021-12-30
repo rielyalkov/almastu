@@ -1,6 +1,5 @@
-#new-page {
+#href {
   display: flex;
-  align-content: center;
-  align-items: center;
-  height: 60px;
+  flex-direction: column;
+  width: 25vw;
 }
