@@ -10,7 +10,7 @@
 }
 
 #empty-label {
-  color: rgba(0,0,0,.5);
+  color: rgba(0, 0, 0, .5);
   transition: opacity 1s linear;
   display: block;
 }
@@ -24,19 +24,19 @@
   user-select: none;
 }
 
-#circleG{
+#circleG {
   transition: all 1s linear;
   position: absolute;
   margin-left: 50%;
   margin-top: 50vh;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .newsElement {
   margin: .3% 1% .3%;
   width: stretch;
   border-radius: 5px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .newsElement-title {

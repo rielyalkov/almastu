@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -22,7 +22,8 @@ export class MainPageComponent implements OnInit, AfterContentInit {
   bodyElement = null;
   production = environment.production;
 
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

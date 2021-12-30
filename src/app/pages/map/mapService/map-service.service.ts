@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
-import {Observable} from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,7 @@ export class MapService {
   }
 
   makeArray(): void {
-    const route = [
-    ];
+    const route = [];
 
     // route.map((q, i) => {
     //     this.db.collection('/coordinates').doc('/Karelia').collection('/routes').doc('/1').update({[i]: q});
@@ -37,11 +36,11 @@ export class MapService {
         return coord.pipe();
       }
       case 2: {
-          const coord = this.db.collection('/coordinates')
-            .doc('/Elbrus')
-            .collection('/routes')
-            .valueChanges();
-          return coord.pipe();
+        const coord = this.db.collection('/coordinates')
+          .doc('/Elbrus')
+          .collection('/routes')
+          .valueChanges();
+        return coord.pipe();
       }
       case 6: {
         const coord = this.db.collection('/coordinates')

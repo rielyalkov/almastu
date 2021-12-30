@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './pages/about/about.component';
@@ -10,8 +10,7 @@ import { AuxiliaryComponent } from './auxiliary/auxiliary.component';
 import { LoginComponent } from './login/login.component';
 import { PanelComponent } from './panel/panel.component';
 import { Page404Component } from './page404/page404.component';
-import {NewsDetailComponent} from './news/news-detail/news-detail.component';
-import {NewsComponent} from './news/news.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsEditorComponent } from './panel/news-editor/news-editor.component';
 import { PanelMainComponent } from './panel/panel-main/panel-main.component';
 
@@ -44,13 +43,13 @@ const routes: Routes = [
         path: 'contacts',
         component: ContactsComponent
       },
-      ]
+    ]
   },
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToPanel }
+    data: {authGuardPipe: redirectLoggedInToPanel}
   },
   {
     path: 'panel',
@@ -62,7 +61,7 @@ const routes: Routes = [
     path: 'panel',
     component: PanelComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    data: {authGuardPipe: redirectUnauthorizedToLogin},
     children: [
       {
         path: 'editor',
@@ -83,6 +82,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  bootstrap:    [ AppComponent ]
+  bootstrap: [AppComponent]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

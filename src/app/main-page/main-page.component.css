@@ -59,6 +59,7 @@
   position: absolute;
   cursor: pointer;
 }
+
 .chevron {
   position: absolute;
   width: 1.4rem;
@@ -67,12 +68,15 @@
   transform: scale(0.3);
   animation: move-chevron 3s ease-out infinite;
 }
+
 .chevron:first-child {
   animation: move-chevron 3s ease-out 1s infinite;
 }
+
 .chevron:nth-child(2) {
   animation: move-chevron 3s ease-out 2s infinite;
 }
+
 .chevron:before, .chevron:after {
   content: '';
   position: absolute;
@@ -81,10 +85,12 @@
   width: 50%;
   background: #ffffff;
 }
+
 .chevron:before {
   left: 0;
   transform: skewY(30deg);
 }
+
 .chevron:after {
   right: 0;
   width: 50%;
@@ -138,11 +144,11 @@
   width: 100%;
   position: fixed;
   display: flex;
-  background: rgb(255,255,255);
-  background: -moz-linear-gradient(90deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.3) 100%);
-  background: -webkit-linear-gradient(90deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.3) 100%);
-  background: linear-gradient(90deg, rgba(255,255,255,.8) 0%, rgba(255,255,255,.3) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff",endColorstr="#ffffff",GradientType=1);
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(90deg, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .3) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .3) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, .8) 0%, rgba(255, 255, 255, .3) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#ffffff", GradientType=1);
 }
 
 .title {

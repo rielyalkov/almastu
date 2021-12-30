@@ -18,4 +18,5 @@ import { FormsModule } from '@angular/forms';
     MapRoutingModule
   ]
 })
-export class MapModule { }
+export class MapModule {
+}
