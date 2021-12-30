@@ -25,7 +25,7 @@ export class NewsEditorComponent implements OnInit {
     sheet.afterDismissed().subscribe((obj) => {
       const dialog = obj.dialog as MatDialogRef<EditorInsertDialogComponent>;
       dialog.afterClosed().subscribe((objDial) => {
-        if (objDial.data) {
+        if (objDial) {
           const textToAdd = objDial.data;
           this.text.nativeElement.value += textToAdd;
         }
