@@ -58,6 +58,7 @@ import { EditorInsertDialogComponent, EditorSheetComponent, NewsEditorComponent 
 import { NewsComponent } from './news/news.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { MatRippleModule } from '@angular/material/core';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -134,7 +135,8 @@ const config = {
         AngularFirestoreModule, // firestore,
         AngularFireAnalyticsModule, // analytics
         AngularFireAuthModule, // auth
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        MatRippleModule
     ],
   exports: [
     MatButtonModule,

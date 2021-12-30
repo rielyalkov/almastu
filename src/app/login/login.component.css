@@ -1,66 +1,96 @@
-.general-login {
+#general-login {
   height: 100vh;
-  background: url(../../assets/images/background_login.jpg) center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../assets/images/background_login.jpg");
+  background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.fab {
+#login-form {
+  width: 200px;
+  text-align: center;
+  padding: 50px;
+  border-radius: 10px;
+  background: white;
+}
+
+#login-form > * {
+  font-family: "Open Sans", sans-serif;
+}
+
+#hide {
+  color: grey;
+}
+
+.field {
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 5% 5% 5% 7%;
+  border-radius: 10px;
+  box-shadow: 7px 7px 25px 5px rgba(34, 60, 80, 0.15);
+}
+
+.field > input {
+  text-align: start;
+  border: 0 none;
+  height: 40px;
+  width: 100%;
+}
+
+.field > input:focus {
+  outline: none;
+}
+
+#log-in-button {
+  user-select: none;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 25px;
+  margin-bottom: -10px;
+  min-width: 80px;
+  border-color: rgba(0,0,0,0);
+  box-shadow: 7px 7px 25px 2px rgba(34, 60, 80, 0.10);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill::first-line {
+  font-family: "Open Sans", sans-serif;
+}
+
+#username-field {
+  margin-bottom: 5%;
+}
+
+#password-field {
+  position: relative;
+}
+
+#login-form > h2 {
+  font-weight: normal;
+  margin-top: -4%;
+  margin-bottom: 10%;
+  user-select: none;
+}
+
+input::placeholder {
+  user-select: none;
+}
+
+#home-fab {
   left: 50vw;
   top: 15vh;
   transform: translate(-50%,-50%);
   position: absolute;
-}
-
-.auth-card {
-  left: 50vw;
-  top: 50vh;
-  width: fit-content;
-  transform: translate(-50%,-50%);
-  background-color: rgba(255,255,255,.85);
-}
-
-.login-title {
-  margin: 10%;
-  font-family: "Open Sans", sans-serif;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.auth-card button {
-  margin: 10%;
-}
-
-.field {
-  width: 10vw
-}
-
-.mat-card {
-  padding: 1%;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  border-radius: 1em;
-}
-
-::ng-deep #username-field .mat-form-field-wrapper {
-  margin-top: 0;
-  margin-bottom: -1em;
-}
-
-::ng-deep #password-field .mat-form-field-wrapper {
-  margin-bottom: -1.25em;
-}
-
-.mat-input-element {
-  caret-color: rgba(0,0,0,.5);
-}
-
-::ng-deep .general-login * {
-  color: rgba(0,0,0,.5);
 }

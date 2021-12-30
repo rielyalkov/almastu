@@ -1,30 +1,20 @@
-<div class=general-login id=general-login>
-  <mat-card class="auth-card">
-    <div class=login-title>Вход</div>
+<div id=general-login>
+  <div id="login-form">
+    <h2>Авторизация</h2>
     <form>
-      <p>
-        <mat-form-field appearance=outline id=username-field class=field>
-          <mat-label>Имя пользователя</mat-label>
-          <label>
-            <input matInput autocomplete=username #username>
-          </label>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance=outline id=password-field class=field>
-          <mat-label>Пароль</mat-label>
-          <label>
-            <input matInput autocomplete=current-password [type]="hide ? 'password' : 'text'" #password>
-          </label>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-pressed]=hide>
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </p>
+      <div class="field" id="username-field">
+        <input matInput autocomplete="username" placeholder="Логин" #username>
+      </div>
+      <div class="field" id="password-field">
+        <input matInput [type]="hide ? 'password' : 'text'" autocomplete="current-password" placeholder="Пароль" #password>
+        <button mat-icon-button matSuffix type="button" (click)="hide = !hide">
+          <mat-icon id="hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </div>
     </form>
-    <button mat-stroked-button (click)='signIn(username.value, password.value)'>Войти</button>
-  </mat-card>
-  <button mat-fab class=fab routerLink='/'>
+    <button id="log-in-button" matRipple (click)="signIn(username.value, password.value)">Войти</button>
+  </div>
+  <button mat-fab id=home-fab routerLink='/'>
     <mat-icon>home</mat-icon>
   </button>
 </div>
