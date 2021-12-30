@@ -4,6 +4,7 @@ import { NewsService } from './service/news.service';
 import { News, fd } from './service/news.service';
 import { tap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { getAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-news',
@@ -14,6 +15,7 @@ export class NewsComponent implements OnInit {
 
   news: Observable<News[]>;
   isEmpty = true;
+  authorized: any;
 
   fd(date: any): string {
     return fd(date);
@@ -28,5 +30,12 @@ export class NewsComponent implements OnInit {
         this.isEmpty = false;
       }
     }));
+    getAuth().onAuthStateChanged((user) => {
+      this.authorized = user;
+    });
+  }
+
+  delete(id: string): void {
+    this.newsService.deleteDoc(id);
   }
 }
