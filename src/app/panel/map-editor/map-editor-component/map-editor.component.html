@@ -1,0 +1,54 @@
+<div
+  *ngIf="!(isLoading$ | async); else loadingTemplate"
+  class="table">
+  <button mat-button (click)="addPlace()">
+    Добавить место
+  </button>
+  <table mat-table [dataSource]="places">
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef> № </th>
+      <td mat-cell *matCellDef="let element, index as i"> {{i+1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Место </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+      <th mat-header-cell *matHeaderCellDef> Икнока </th>
+      <td mat-cell *matCellDef="let element">
+        <img width="24px" src="../../../../assets/images/location.svg" alt="icon">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="latlng">
+      <th mat-header-cell *matHeaderCellDef> Координаты </th>
+      <td mat-cell *matCellDef="let element"> [{{element.latlng.latitude}}, {{element.latlng.longitude}}] </td>
+    </ng-container>
+
+    <ng-container matColumnDef="scale">
+      <th mat-header-cell *matHeaderCellDef> Масштаб </th>
+      <td mat-cell *matCellDef="let element"> {{element.scale}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell *matHeaderCellDef> Управление </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button>
+          <mat-icon>
+            edit
+          </mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<ng-template #loadingTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

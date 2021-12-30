@@ -44,7 +44,7 @@ import { ContactsComponent } from './pages/contacts/contacts.component';
 import { SongComponent } from './pages/about/song/song.component';
 import { LogotypeComponent } from './pages/about/logotype/logotype.component';
 import { DevizComponent } from './pages/about/deviz/deviz.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -91,7 +91,7 @@ const config = {
     EditorSheetComponent,
     EditorInsertDialogComponent,
     NewsDetailComponent,
-    PanelMainComponent
+    PanelMainComponent,
   ],
   imports: [
     BrowserModule,
@@ -133,6 +133,7 @@ const config = {
     MatSortModule,
     MatPaginatorModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule, // firestore,
     AngularFireAnalyticsModule, // analytics

@@ -1,0 +1,31 @@
+<div id="mapHTML"></div>
+
+<button mat-button (click)="resetPoint()">reset</button>
+
+<form [formGroup]="form">
+  <mat-form-field>
+    <input
+      placeholder="name"
+      formControlName="name"
+      matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      placeholder="scale"
+      formControlName="scale"
+      matInput>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      placeholder="icon"
+      formControlName="icon"
+      matInput>
+  </mat-form-field>
+</form>
+
+<button mat-button (click)="addNewPlace()">
+  Добавить новое место путешествий
+</button>
+

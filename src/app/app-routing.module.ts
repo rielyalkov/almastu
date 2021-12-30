@@ -66,6 +66,10 @@ const routes: Routes = [
       {
         path: 'editor',
         component: NewsEditorComponent
+      },
+      {
+        path: 'map-editor',
+        loadChildren: () => import('./panel/map-editor/map-editor.module').then(m => m.MapEditorModule)
       }
     ]
   },

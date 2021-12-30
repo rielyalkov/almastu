@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  margin: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-button {
+  width: 100%;
+}
+
+mat-spinner {
+  margin: 20px;
+}

@@ -10,4 +10,19 @@ export class PanelComponent {
   constructor() {
   }
 
+  public links: {link: string, name: string}[] = [
+    {
+      link: '/',
+      name: 'Домой'
+    },
+    {
+      link: '/panel/editor',
+      name: 'Редактор новостей'
+    },
+    {
+      link: '/panel/map-editor',
+      name: 'Редактор карты'
+    },
+  ];
+
 }

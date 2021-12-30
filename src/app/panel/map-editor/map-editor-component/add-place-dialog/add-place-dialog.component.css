@@ -1,0 +1,7 @@
+#mapAddPlace {
+  height: 400px;
+  width: 700px;
+  border-radius: 4px;
+  position: relative;
+  z-index: 500
+}

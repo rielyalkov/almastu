@@ -1,8 +1,15 @@
 <div id=panel-nav>
   <nav mat-tab-nav-bar mat-align-tabs="center">
-    <a mat-tab-link routerLink="/">Домой</a>
-    <a mat-tab-link active="true">Редактор</a>
-    <a mat-tab-link routerLink="/map">Карта</a>
+    <a *ngFor="let link of links"
+      mat-tab-link
+      routerLinkActive
+       #rla="routerLinkActive"
+      [routerLinkActiveOptions]="{exact:true}"
+      [active]="rla.isActive"
+      [routerLink]="link.link"
+    >
+      {{link.name}}
+    </a>
   </nav>
 </div>
 <router-outlet></router-outlet>
