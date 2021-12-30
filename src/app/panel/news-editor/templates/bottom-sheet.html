@@ -1,7 +1,30 @@
-<div id=formatting style="display: none">
-  <p id=selection></p>
+<div id=formatting *ngIf="selectionText !== ''">
+  <p>
+    Предпросмотр:
+    <span [innerHTML]="preview()"></span>
+  </p><br/>
+  <p>Выберите, что вы хотите сделать с текстом:</p>
+  <mat-button-toggle-group multiple (change)="flags = $event.value">
+    <mat-button-toggle value="b">
+      <mat-icon>
+        format_bold
+      </mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="i">
+      <mat-icon>
+        format_italic
+      </mat-icon>
+    </mat-button-toggle>
+    <mat-button-toggle value="u">
+      <mat-icon>
+        format_underlined
+      </mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <br/><br/>
+  <button mat-stroked-button (click)="formatDone()">Готово</button>
 </div>
-<div id=add style="display: none">
+<div id=add *ngIf="selectionText === ''">
   <mat-nav-list>
     <mat-list-item (click)="onTapped($event, 'image')" id=insert-image>
       <p>Вставить изображение</p>
