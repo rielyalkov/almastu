@@ -1,14 +1,21 @@
 <div class=font>
   <h1 id=news-title>Лента новостей</h1>
   <div id=newsfeed>
-    <div *ngFor="let doc of news | async" class="newsElement pointer" routerLink="/news/{{doc.ID}}">
+    <mat-card *ngFor="let doc of news | async" class=newsElement>
       <div *ngIf="doc.imageUrl !== undefined" class=newsElement-image
            [style.background-image]="'linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url(' + doc.imageUrl + ')'">
         <img [src]="doc.imageUrl" [alt]="doc.ID"></div>
-      <h3 class=newsElement-title>{{doc.name}}</h3>
-      <p class=newsElement-time>{{fd(doc.time)}}</p>
-      <div class=newsElement-content [innerHTML]="doc.html"></div>
-    </div>
+      <mat-card-title class=pointer routerLink="/news/{{doc.ID}}"><u>{{doc.name}}</u></mat-card-title>
+      <mat-card-subtitle>{{fd(doc.time)}}</mat-card-subtitle>
+      <mat-card-content [innerHTML]="doc.html"></mat-card-content>
+      <mat-card-actions *ngIf="authorized">
+        <button mat-icon-button class=newsElement-delete (click)="delete(doc.ID)">
+          <mat-icon color="warn">
+            delete
+          </mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
     <p *ngIf="isEmpty" id=empty-label>Пока нет новостей</p>
   </div>
 </div>
