@@ -81,7 +81,8 @@ export class EditorSheetComponent {
     @Inject(MAT_BOTTOM_SHEET_DATA) public selectionShared: [number, number, string],
     private bs: MatBottomSheetRef,
     public dialog: MatDialog
-  ) {}
+  ) {
+  }
 
   offsets: [number, number] = [this.selectionShared[0], this.selectionShared[1]];
   flags: string[] = [];

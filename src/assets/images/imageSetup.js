@@ -20,7 +20,10 @@ export function imageSet() {
       let workingElement = document.getElementById(imageArray[i]["id"]);
       workingElement.children[0].src = imageArray[i]["imageLink"];
       workingElement.children[1].children[0].innerHTML = imageArray[i]["alt"];
-      workingElement.onclick = function() {open_floating(imageArray[i]["imageLink"], imageArray[i]["alt"])};
-    } catch (e) {}
+      workingElement.onclick = function () {
+        open_floating(imageArray[i]["imageLink"], imageArray[i]["alt"])
+      };
+    } catch (e) {
+    }
   }
 }

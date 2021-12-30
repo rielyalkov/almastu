@@ -43,7 +43,7 @@
       this._map.toggleFullscreen(this.options);
     },
 
-    _toggleTitle: function() {
+    _toggleTitle: function () {
       this.link.title = this.options.title[this._map.isFullscreen()];
     }
   });
@@ -99,7 +99,7 @@
       this.fire('fullscreenchange');
     },
 
-    _setFullscreen: function(fullscreen) {
+    _setFullscreen: function (fullscreen) {
       this._isFullscreen = fullscreen;
       var container = this.getContainer();
       if (fullscreen) {

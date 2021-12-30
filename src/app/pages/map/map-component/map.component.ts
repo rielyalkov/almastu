@@ -15,12 +15,13 @@ import * as values from '../MapDefinedValues';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, OnDestroy{
+export class MapComponent implements OnInit, OnDestroy {
 
   // tslint:disable-next-line:variable-name
   constructor(private _mapService: MapService,
               private db: AngularFirestore,
-              ) {}
+  ) {
+  }
 
   private Map;
 
@@ -131,7 +132,8 @@ export class MapComponent implements OnInit, OnDestroy{
           this.layerIsCreated = true;
         })
       ).subscribe();
-    } catch (e) {}
+    } catch (e) {
+    }
   }
 
   changeMapStyle(event: MatRadioChange): void {

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
@@ -93,53 +93,53 @@ const config = {
     NewsDetailComponent,
     PanelMainComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatSliderModule,
-        CommonModule,
-        BrowserAnimationsModule,
-        MatCheckboxModule,
-        MatCheckboxModule,
-        MatButtonModule,
-        MatInputModule,
-        MatAutocompleteModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatRadioModule,
-        MatSelectModule,
-        MatSliderModule,
-        MatSlideToggleModule,
-        MatMenuModule,
-        MatSidenavModule,
-        MatBadgeModule,
-        MatToolbarModule,
-        MatListModule,
-        MatGridListModule,
-        MatCardModule,
-        MatStepperModule,
-        MatTabsModule,
-        MatExpansionModule,
-        MatButtonToggleModule,
-        MatChipsModule,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatProgressBarModule,
-        MatDialogModule,
-        MatTooltipModule,
-        MatSnackBarModule,
-        MatTableModule,
-        MatSortModule,
-        MatPaginatorModule,
-        FormsModule,
-        AngularFireModule.initializeApp(config),
-        AngularFirestoreModule, // firestore,
-        AngularFireAnalyticsModule, // analytics
-        AngularFireAuthModule, // auth
-        AngularFireStorageModule,
-        MatRippleModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatListModule,
+    MatGridListModule,
+    MatCardModule,
+    MatStepperModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatButtonToggleModule,
+    MatChipsModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    FormsModule,
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule, // firestore,
+    AngularFireAnalyticsModule, // analytics
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,
+    MatRippleModule
+  ],
   exports: [
     MatButtonModule,
     MatToolbarModule,
@@ -157,7 +157,7 @@ const config = {
     MatTooltipModule,
     MatTableModule,
     MatPaginatorModule
-],
+  ],
   providers: [
     MatDatepickerModule,
     MatBottomSheet,
@@ -165,4 +165,5 @@ const config = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

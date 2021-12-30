@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from '../service/news.service';
-import { News, fd } from '../service/news.service';
+import { fd, News, NewsService } from '../service/news.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -11,7 +10,8 @@ import { Observable } from 'rxjs';
 })
 export class NewsDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private newsService: NewsService) { }
+  constructor(private route: ActivatedRoute, private newsService: NewsService) {
+  }
 
   id: string;
   doc: Observable<News>;
@@ -28,5 +28,8 @@ export class NewsDetailComponent implements OnInit {
       this.loaded = true;
     });
   }
-  fd(date: any): string { return fd(date); }
+
+  fd(date: any): string {
+    return fd(date);
+  }
 }
