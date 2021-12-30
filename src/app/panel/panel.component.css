@@ -1,5 +1,3 @@
-#panel-nav {
-  width: 100vw;
-  height: 10vh;
-  display: flex;
+main {
+  height: 100vh;
 }

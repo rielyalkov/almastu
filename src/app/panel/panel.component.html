@@ -1,2 +1,8 @@
-<div id=panel-nav></div>
-<app-news-editor></app-news-editor>
+<div id=panel-nav>
+  <nav mat-tab-nav-bar mat-align-tabs="center">
+    <a mat-tab-link routerLink="/">Домой</a>
+    <a mat-tab-link active="true">Редактор</a>
+    <a mat-tab-link routerLink="/map">Карта</a>
+  </nav>
+</div>
+<router-outlet></router-outlet>

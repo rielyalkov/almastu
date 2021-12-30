@@ -6,6 +6,7 @@
 }
 
 #general-editor {
+  margin-top: 2.5vh;
   height: 90vh;
   display: flex;
   flex-flow: column;

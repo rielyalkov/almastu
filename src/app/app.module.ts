@@ -59,6 +59,7 @@ import { NewsComponent } from './news/news.component';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { MatRippleModule } from '@angular/material/core';
+import { PanelMainComponent } from './panel/panel-main/panel-main.component';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -89,7 +90,8 @@ const config = {
     NewsComponent,
     EditorSheetComponent,
     EditorInsertDialogComponent,
-    NewsDetailComponent
+    NewsDetailComponent,
+    PanelMainComponent
   ],
     imports: [
         BrowserModule,

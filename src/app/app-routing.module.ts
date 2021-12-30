@@ -12,6 +12,8 @@ import { PanelComponent } from './panel/panel.component';
 import { Page404Component } from './page404/page404.component';
 import {NewsDetailComponent} from './news/news-detail/news-detail.component';
 import {NewsComponent} from './news/news.component';
+import { NewsEditorComponent } from './panel/news-editor/news-editor.component';
+import { PanelMainComponent } from './panel/panel-main/panel-main.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPanel = () => redirectLoggedInTo(['panel']);
@@ -52,9 +54,21 @@ const routes: Routes = [
   },
   {
     path: 'panel',
+    component: PanelMainComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToLogin},
+  },
+  {
+    path: 'panel',
     component: PanelComponent,
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectUnauthorizedToLogin }
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+    children: [
+      {
+        path: 'editor',
+        component: NewsEditorComponent
+      }
+    ]
   },
   {
     path: 'news/:id',
