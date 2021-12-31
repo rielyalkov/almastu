@@ -3,16 +3,35 @@
 }
 
 #newsfeed {
-  min-height: 100vh;
+  min-height: 90vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
 }
 
-#empty-label {
+#empty {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: rgba(0, 0, 0, .5);
   transition: opacity 1s linear;
-  display: block;
+}
+
+#loading {
+  display: flex;
+  height: 90vh;
+  width: 100vw;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  flex-direction: column;
+}
+
+#loading-bar {
+  width: 60vw
 }
 
 #news-title {

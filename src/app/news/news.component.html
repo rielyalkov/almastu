@@ -16,6 +16,11 @@
         </button>
       </mat-card-actions>
     </mat-card>
-    <p *ngIf="isEmpty" id=empty-label>Пока нет новостей</p>
+    <div id="empty">
+      <p *ngIf="isEmpty && loaded">Пока нет новостей</p>
+    </div>
+    <div id="loading" [@fadeOut]="true" *ngIf="!loaded">
+      <mat-progress-bar mode="indeterminate" id="loading-bar"></mat-progress-bar>
+    </div>
   </div>
 </div>
