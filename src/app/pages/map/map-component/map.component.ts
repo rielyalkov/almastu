@@ -94,9 +94,11 @@ export class MapComponent implements OnInit, OnDestroy {
               }
             }
 
+            // TODO отключать змейку на больших масштабах
             this.arrayOfAddedRoutes.push(this.markers);
-            // @ts-ignore
-            this.markers.addTo(this.Map).snakeIn();
+            this.markers.addTo(this.Map);
+              // @ts-ignore
+              // .snakeIn();
           }
           this.layerIsCreated = true;
         })
