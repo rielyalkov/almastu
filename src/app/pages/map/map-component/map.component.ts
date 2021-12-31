@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import * as L from 'leaflet';
 import 'leaflet-draw';
 import { MatRadioChange } from '@angular/material/radio';
@@ -10,6 +10,7 @@ import '../Leaflet.Fullscreen.js';
 import { Subject } from 'rxjs';
 import * as values from '../MapDefinedValues';
 import {LayerGroup} from 'leaflet';
+import {OSM_CONFIG, OsmConfig} from '../../../osm-config/osm.config';
 
 @Component({
   selector: 'app-map',
@@ -18,8 +19,11 @@ import {LayerGroup} from 'leaflet';
 })
 export class MapComponent implements OnInit, OnDestroy {
 
-  // tslint:disable-next-line:variable-name
-  constructor(private _mapService: MapService) {
+  constructor(
+    // tslint:disable-next-line:variable-name
+    private _mapService: MapService,
+    @Inject(OSM_CONFIG) public osmConfig: OsmConfig
+  ) {
   }
 
   private Map;
@@ -32,6 +36,8 @@ export class MapComponent implements OnInit, OnDestroy {
   MarkerArray;
   markers: LayerGroup;
   arrayOfAddedRoutes = [];
+
+  currentMarker;
 
   layerIsCreated = false;
 
@@ -79,15 +85,12 @@ export class MapComponent implements OnInit, OnDestroy {
             const markLast = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: values.endIcon})
               .bindPopup('<b>Конец Маршрута</b>');
 
-            console.log(this.Map.getBounds().contains(markFirst.getLatLng()));
-
             this.markers = L.layerGroup([markFirst, line, markLast]);
 
             for (let k = 1; k < coordinatesArray.length; k++) {
               if (coordinatesArray[k][2]) {
                 const point = L.marker(coordinatesArray[k], {icon: values.tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
                 this.markers.addLayer(point);
-                console.log(coordinatesArray[k][2]);
               }
             }
 
@@ -115,8 +118,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
   mapStyleDefine(mapStyle): void {
     L.tileLayer(mapStyle, {
-      maxZoom: 19,
-      attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+      maxZoom: this.osmConfig.maxZoom,
+      attribution: this.osmConfig.attribution
     }).addTo(this.Map);
   }
 
@@ -126,8 +129,10 @@ export class MapComponent implements OnInit, OnDestroy {
 
   putPlaceMarkers(places): void {
     this.MarkerArray = [];
-    places.forEach((place) => {
+    places.forEach((place, index) => {
       this.MarkerArray.push({
+        // TODO костыль! получать имя документа и класть сюда
+        index,
         scale: place.scale,
         marker: L.marker([place.latlng._lat, place.latlng._long], {icon: values.lIcon})
             .addTo(this.Map)
@@ -147,20 +152,25 @@ export class MapComponent implements OnInit, OnDestroy {
     const that = this;
     this.Map.on('zoom', function(): void {
       const Zoom = this.getZoom();
-      for (let i = 0; i < that.MarkerArray.length; i++) {
-        if (
-          Zoom >= that.MarkerArray[i].scale &&
-          this.getBounds().contains(that.MarkerArray[i].marker.getLatLng()) &&
-          that.layerIsCreated === false
-        ) {
-          that.buildRoutesMarkers(i);
 
-        } else if (Zoom < that.MarkerArray[i].scale - 1 && that.layerIsCreated === true) {
-          for (const addedRoute of that.arrayOfAddedRoutes) {
-            addedRoute.remove();
-          }
-          that.layerIsCreated = false;
+      that.MarkerArray.forEach((marker) => {
+        if (this.getBounds().contains(marker.marker.getLatLng())) {
+          this.currentMarker = marker;
         }
+      });
+
+      if (
+        Zoom >= this.currentMarker.scale &&
+        this.getBounds().contains(this.currentMarker.marker.getLatLng()) &&
+        that.layerIsCreated === false
+      ) {
+        that.buildRoutesMarkers(this.currentMarker.index);
+      } else if (Zoom < this.currentMarker.scale && that.layerIsCreated === true) {
+        for (const addedRoute of that.arrayOfAddedRoutes) {
+          addedRoute.remove();
+        }
+        that.arrayOfAddedRoutes = [];
+        that.layerIsCreated = false;
       }
     });
   }

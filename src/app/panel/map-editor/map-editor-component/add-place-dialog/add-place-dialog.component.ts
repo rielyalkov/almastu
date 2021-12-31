@@ -1,26 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component, Inject,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import * as L from 'leaflet';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PlacesService} from '../../services/places.service';
 import {GeoPoint} from '@angular/fire/firestore';
+import {PlaceModel} from '../map-editor.component';
+import {tap} from 'rxjs';
+import {OSM_CONFIG, OsmConfig} from '../../../../osm-config/osm.config';
 
 
 @Component({
   selector: 'app-add-place-dialog',
   templateUrl: './add-place-dialog.component.html',
-  styleUrls: ['./add-place-dialog.component.css']
+  styleUrls: ['./add-place-dialog.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddPlaceDialogComponent implements OnInit {
+export class AddPlaceDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public form: FormGroup;
 
-  private map;
   private marker;
+
+  map;
 
 
   constructor(
     private formBuilder: FormBuilder,
     private placesService: PlacesService,
+    private cdRef: ChangeDetectorRef,
+    @Inject(OSM_CONFIG) public osmConfig: OsmConfig
   ) { }
 
   ngOnInit(): void {
@@ -30,35 +44,14 @@ export class AddPlaceDialogComponent implements OnInit {
       icon: [null],
     });
 
-    document.getElementById('mapHTML').innerHTML =
-      '<div id=\'mapAddPlace\' ' +
-      'style="  height: 400px;\n' +
-      '  width: 700px;\n' +
-      '  border-radius: 4px;\n' +
-      '  position: relative;\n' +
-      '  z-index: 500;' +
-      'cursor: pointer"' +
-      'leaflet></div>';
-
-    // @ts-ignore
-    this.map = L.map('mapAddPlace', {drawControl: false, fullscreenControl: true}).setView([60.000, 100.000], 3);
-
-    this.resetPoint();
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: 'Map data: &copy; ' +
-        '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ' +
-        'contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; ' +
-        '<a href="https://opentopomap.org">OpenTopoMaps</a> ' +
-        '(<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-    }).addTo(this.map);
+    this.form.valueChanges.pipe(
+      tap((q) => console.log(this.placesService.places.some((place: PlaceModel) => place.name === q.name)))
+    ).subscribe();
   }
 
-  resetPoint(): void {
-    this.marker?.remove();
+  addListenerPoint(): void {
     this.map.on('click', (event) => {
-      this.map.off('click');
+      this.marker?.remove();
       // @ts-ignore
       this.marker = L.marker(event.latlng).addTo(this.map);
     });
@@ -71,5 +64,23 @@ export class AddPlaceDialogComponent implements OnInit {
     };
 
     this.placesService.createNewPlace(newPlaceData);
+  }
+
+  ngAfterViewInit(): void {
+    // @ts-ignore
+    this.map = L.map('mapAddPlace').setView([60.000, 100.000], 3);
+
+
+    L.tileLayer(this.osmConfig.urlTemplate, {
+      maxZoom: this.osmConfig.maxZoom,
+      attribution: this.osmConfig.attribution
+    }).addTo(this.map);
+
+    this.addListenerPoint();
+
+  }
+
+  ngOnDestroy(): void {
+    this.map.remove();
   }
 }

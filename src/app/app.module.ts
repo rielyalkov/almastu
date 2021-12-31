@@ -60,6 +60,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { MatRippleModule } from '@angular/material/core';
 import { PanelMainComponent } from './panel/panel-main/panel-main.component';
+import {OsmConfigProvider} from './osm-config/osm.config';
 
 const config = {
   apiKey: 'AIzaSyBwqVV9pM18yGSNPULLYsJjqI-tnkMxAb0',
@@ -162,6 +163,7 @@ const config = {
   providers: [
     MatDatepickerModule,
     MatBottomSheet,
+    OsmConfigProvider
     // {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {PlacesService} from '../services/places.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {BehaviorSubject, Subject} from 'rxjs';
@@ -17,6 +17,7 @@ export interface PlaceModel {
   selector: 'app-map-editor',
   templateUrl: './map-editor.component.html',
   styleUrls: ['./map-editor.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MapEditorComponent implements OnInit, OnDestroy {
 
