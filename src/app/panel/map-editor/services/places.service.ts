@@ -22,9 +22,8 @@ export class PlacesService {
     );
   }
 
-  createNewPlace(newPlaceData): Observable<any> {
-
+  createNewPlace(newPlaceData: PlaceModel): Observable<any> {
     // this.db.collection('/places').add(newPlaceData);
-    return of(this.db.collection('/places').doc(String(this.places.length)).set(newPlaceData));
+    return of(this.db.collection('/places').doc(String(newPlaceData.id)).set(newPlaceData));
   }
 }

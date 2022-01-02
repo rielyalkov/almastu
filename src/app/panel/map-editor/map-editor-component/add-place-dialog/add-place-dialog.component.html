@@ -3,12 +3,17 @@
   <div id='mapAddPlace'></div>
 </div>
 
-<form [formGroup]="form">
+<form
+  class="add-place__form"
+  [formGroup]="form">
   <mat-form-field>
     <input
       placeholder="name"
       formControlName="name"
       matInput>
+    <mat-error *ngIf="form.get('name').hasError('validatePlace')">
+      Такое название места уже существует
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -26,7 +31,13 @@
   </mat-form-field>
 </form>
 
-<button mat-button (click)="addNewPlace()">
-  Добавить новое место путешествий
-</button>
+<div class="add-place__button__wrapper">
+  <button
+    mat-button
+    [disabled]="!isValid"
+    (click)="addNewPlace()">
+    Добавить новое место путешествий
+  </button>
+</div>
+
 

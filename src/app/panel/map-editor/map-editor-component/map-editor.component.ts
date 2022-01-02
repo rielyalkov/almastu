@@ -5,11 +5,13 @@ import {BehaviorSubject, Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {AddPlaceDialogComponent} from './add-place-dialog/add-place-dialog.component';
+import {GeoPoint} from '@angular/fire/firestore';
 
 export interface PlaceModel {
   name: string;
   icon: string;
-  latlng: string;
+  id: number;
+  latlng: GeoPoint;
   scale: number;
 }
 
@@ -52,6 +54,14 @@ export class MapEditorComponent implements OnInit, OnDestroy {
 
   addPlace(): void {
     const dialogRef = this.dialog.open(AddPlaceDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  editPlace(placeData): void {
+    const dialogRef = this.dialog.open(AddPlaceDialogComponent, {data: placeData});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

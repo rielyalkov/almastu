@@ -1,7 +1,19 @@
 #mapAddPlace {
   height: 400px;
   width: 700px;
-  border-radius: 4px;
+  border-radius: 10px;
   position: relative;
-  z-index: 500
+  z-index: 500;
+  cursor: pointer;
+}
+
+.add-place__form {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.add-place__button__wrapper {
+  display: flex;
+  justify-content: center;
 }
