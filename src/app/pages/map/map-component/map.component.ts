@@ -4,7 +4,6 @@ import 'leaflet-draw';
 import { MatRadioChange } from '@angular/material/radio';
 import { MapService } from '../mapService/map-service.service';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import 'leaflet.polyline.snakeanim/L.Polyline.SnakeAnim.js';
 import '../Leaflet.Fullscreen.js';
 import { Subject } from 'rxjs';
@@ -63,53 +62,50 @@ export class MapComponent implements OnInit, OnDestroy {
   buildRoutesMarkers(i): void {
     let routesArrays = [];
     let coordinatesArray = [];
-    try {
-      this._mapService.getCoord(i).pipe(
-        takeUntil(this.$destroy),
-        map(q => routesArrays = q),
-        tap(() => {
-          for (let j = 0; j < routesArrays.length; j++) {
-            coordinatesArray = Object.values(routesArrays[j]);
+    this._mapService.getCoord(i).pipe(
+      takeUntil(this.$destroy),
+      map(q => routesArrays = q),
+      tap(() => {
+        for (let j = 0; j < routesArrays.length; j++) {
+          coordinatesArray = Object.values(routesArrays[j]);
 
-            // @ts-ignore
-            const line = L.polyline(coordinatesArray, {color: this.routeColors[j], snakingSpeed: 200});
-            line.bindPopup('<b>Маршрут</b>');
+          // @ts-ignore
+          const line = L.polyline(coordinatesArray, {color: this.routeColors[j], snakingSpeed: 200});
+          line.bindPopup('<b>Маршрут</b>');
 
-            const markFirst = L.marker(coordinatesArray[0], {icon: values.startIcon});
-            if (coordinatesArray[0][2]) {
-              markFirst.bindPopup(`${coordinatesArray[0][2]}`);
-            } else {
-              markFirst.bindPopup('<b>Начало Маршрута</b>');
-            }
-
-            const markLast = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: values.endIcon})
-              .bindPopup('<b>Конец Маршрута</b>');
-
-            this.markers = L.layerGroup([markFirst, line, markLast]);
-
-            for (let k = 1; k < coordinatesArray.length; k++) {
-              if (coordinatesArray[k][2]) {
-                const point = L.marker(coordinatesArray[k], {icon: values.tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
-                this.markers.addLayer(point);
-              }
-            }
-
-            if (this.Map.getZoom() > 8) {
-              this.markers.addTo(this.Map)
-              // @ts-ignore
-              .snakeIn();
-            } else {
-              this.markers.addTo(this.Map);
-            }
-
-            this.arrayOfAddedRoutes.push(this.markers);
-
+          const markFirst = L.marker(coordinatesArray[0], {icon: values.startIcon});
+          if (coordinatesArray[0][2]) {
+            markFirst.bindPopup(`${coordinatesArray[0][2]}`);
+          } else {
+            markFirst.bindPopup('<b>Начало Маршрута</b>');
           }
-          this.layerIsCreated = true;
-        })
-      ).subscribe();
-    } catch (e) {
-    }
+
+          const markLast = L.marker(coordinatesArray[coordinatesArray.length - 1], {icon: values.endIcon})
+            .bindPopup('<b>Конец Маршрута</b>');
+
+          this.markers = L.layerGroup([markFirst, line, markLast]);
+
+          for (let k = 1; k < coordinatesArray.length; k++) {
+            if (coordinatesArray[k][2]) {
+              const point = L.marker(coordinatesArray[k], {icon: values.tentIcon}).bindPopup(`<b>${coordinatesArray[k][2]}</b>`);
+              this.markers.addLayer(point);
+            }
+          }
+
+          if (this.Map.getZoom() > 8) {
+            this.markers.addTo(this.Map)
+            // @ts-ignore
+            .snakeIn();
+          } else {
+            this.markers.addTo(this.Map);
+          }
+
+          this.arrayOfAddedRoutes.push(this.markers);
+
+        }
+        this.layerIsCreated = true;
+      })
+    ).subscribe();
   }
 
   changeMapStyle(event: MatRadioChange): void {
@@ -137,18 +133,21 @@ export class MapComponent implements OnInit, OnDestroy {
   putPlaceMarkers(places): void {
     this.MarkerArray = [];
     places.forEach((place, index) => {
+
+      const placeMarker = L.marker([place.latlng._lat, place.latlng._long], {icon: values.lIcon})
+        .addTo(this.Map)
+        .bindTooltip(`<b>${place.name}</b>`)
+        .on('click',
+          (event) => {
+            // @ts-ignore
+            this.Map.setView(event.latlng, place.scale);
+          });
+
       this.MarkerArray.push({
         // TODO костыль! получать имя документа и класть сюда
         index,
         scale: place.scale,
-        marker: L.marker([place.latlng._lat, place.latlng._long], {icon: values.lIcon})
-            .addTo(this.Map)
-            .bindPopup(`<b>${place.name}</b>`)
-            .on('click',
-              (event) => {
-                // @ts-ignore
-                this.Map.setView(event.latlng, place.scale);
-              })
+        marker: placeMarker,
       });
     });
 
@@ -162,17 +161,17 @@ export class MapComponent implements OnInit, OnDestroy {
 
       that.MarkerArray.forEach((marker) => {
         if (this.getBounds().contains(marker.marker.getLatLng())) {
-          this.currentMarker = marker;
+          that.currentMarker = marker;
         }
       });
 
       if (
-        Zoom >= this.currentMarker.scale &&
-        this.getBounds().contains(this.currentMarker.marker.getLatLng()) &&
+        Zoom >= that.currentMarker.scale &&
+        this.getBounds().contains(that.currentMarker.marker.getLatLng()) &&
         that.layerIsCreated === false
       ) {
-        that.buildRoutesMarkers(this.currentMarker.index);
-      } else if (Zoom < this.currentMarker.scale && that.layerIsCreated === true) {
+        that.buildRoutesMarkers(that.currentMarker.index);
+      } else if (Zoom < that.currentMarker.scale && that.layerIsCreated === true) {
         for (const addedRoute of that.arrayOfAddedRoutes) {
           addedRoute.remove();
         }
