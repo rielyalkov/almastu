@@ -26,7 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  private Map;
+  private Map: L.Map;
 
   selectedMap = 'Географическая карта';
   seasons: string[] = ['Географическая карта', 'Топографическая карта'];
@@ -94,11 +94,16 @@ export class MapComponent implements OnInit, OnDestroy {
               }
             }
 
-            // TODO отключать змейку на больших масштабах
-            this.arrayOfAddedRoutes.push(this.markers);
-            this.markers.addTo(this.Map);
+            if (this.Map.getZoom() > 8) {
+              this.markers.addTo(this.Map)
               // @ts-ignore
-              // .snakeIn();
+              .snakeIn();
+            } else {
+              this.markers.addTo(this.Map);
+            }
+
+            this.arrayOfAddedRoutes.push(this.markers);
+
           }
           this.layerIsCreated = true;
         })
