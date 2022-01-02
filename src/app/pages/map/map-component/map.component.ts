@@ -32,6 +32,8 @@ export class MapComponent implements OnInit, OnDestroy {
 
   OpenTopoMap = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
   OpenStreetMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  // license?
+  AerialMap = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
   MarkerArray;
   markers: LayerGroup;
   arrayOfAddedRoutes = [];
