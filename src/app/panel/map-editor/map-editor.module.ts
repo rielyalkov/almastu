@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import { DeletePlaceDialogComponent } from './map-editor-component/delete-place-dialog/delete-place-dialog.component';
+import { MapEditorRootComponent } from './map-editor-root/map-editor-root.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { DeletePlaceDialogComponent } from './map-editor-component/delete-place-
     PlaceEditorComponent,
     EditPlaceDialogComponent,
     DeletePlaceDialogComponent,
+    MapEditorRootComponent,
   ]
 })
 export class MapEditorModule { }

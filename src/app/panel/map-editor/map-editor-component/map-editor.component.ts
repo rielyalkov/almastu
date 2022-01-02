@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {EditPlaceDialogComponent} from './edit-place-dialog/edit-place-dialog.component';
 import {GeoPoint} from '@angular/fire/firestore';
 import {DeletePlaceDialogComponent} from './delete-place-dialog/delete-place-dialog.component';
+import {Router} from '@angular/router';
 
 export interface PlaceModel {
   name: string;
@@ -33,7 +34,8 @@ export class MapEditorComponent implements OnInit, OnDestroy {
 
   constructor(
     private placesService: PlacesService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -71,5 +73,7 @@ export class MapEditorComponent implements OnInit, OnDestroy {
   }
 
   // TODO
-  openPlaceRoutes(placeData: PlaceModel): void { }
+  openPlaceRoutes(placeData: PlaceModel): void {
+    this.router.navigateByUrl(`/panel/map-editor/place/${placeData.docId}`, {state: placeData}).then();
+  }
 }
