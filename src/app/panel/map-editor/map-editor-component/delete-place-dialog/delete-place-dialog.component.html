@@ -1,0 +1,29 @@
+<div class="mat-body">
+  Вы точно хотите удалить место путешествий {{data.name}}?
+</div>
+
+<div
+  class="buttons-row"
+  *ngIf="!isDeleting; else isDeletingBlock">
+  <button
+    (click)="deletePlace(data.docId)"
+    mat-button
+  >
+    Да
+  </button>
+
+  <button
+    (click)="close()"
+    mat-button
+    cdkFocusInitial
+  >
+    Нет
+  </button>
+</div>
+
+<ng-template #isDeletingBlock>
+  <mat-spinner
+    diameter="40"
+  >
+  </mat-spinner>
+</ng-template>

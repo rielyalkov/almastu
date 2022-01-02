@@ -14,6 +14,7 @@ export class PlacesService {
 
   places: PlaceModel[];
 
+
   constructor(
     private db: AngularFirestore
   ) {
@@ -22,8 +23,7 @@ export class PlacesService {
   }
 
   getPlaces(): Observable<any> {
-    return this.db.collection('/places').valueChanges().pipe(
-      tap((q) => console.log(q)),
+    return this.db.collection('/places').valueChanges({idField: 'docId'}).pipe(
       tap((q) => this.places = q)
     );
   }
@@ -35,5 +35,11 @@ export class PlacesService {
     ).pipe(
         tap(() => this.isCreatingSubject.next(false))
       );
+  }
+
+  deletePlace(docId: string): Observable<any> {
+    return from(
+      this.db.collection('/places').doc(docId).delete()
+    );
   }
 }

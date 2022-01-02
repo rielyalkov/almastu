@@ -12,7 +12,7 @@ import {GeoPoint} from '@angular/fire/firestore';
 import {PlaceModel} from '../map-editor.component';
 import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {OSM_CONFIG, OsmConfig} from '../../../../osm-config/osm.config';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {convertGeoPointToLatLng} from '../../shared/geopoint-to-latlng.function';
 import {takeUntil} from 'rxjs/operators';
 import {LatLng, Marker} from 'leaflet';
@@ -38,6 +38,7 @@ export class EditPlaceDialogComponent implements OnInit, AfterViewInit, OnDestro
     private formBuilder: FormBuilder,
     private placesService: PlacesService,
     private cdRef: ChangeDetectorRef,
+    private dialogRef: MatDialogRef<EditPlaceDialogComponent>,
     @Inject(OSM_CONFIG) public osmConfig: OsmConfig,
     @Inject(MAT_DIALOG_DATA) public data: PlaceModel,
   ) {
@@ -97,7 +98,7 @@ export class EditPlaceDialogComponent implements OnInit, AfterViewInit, OnDestro
 
     this.placesService.createNewPlace(newPlaceData).pipe(
       takeUntil(this.destroy$),
-    ).subscribe();
+    ).subscribe(() => this.dialogRef.close());
   }
 
   ngAfterViewInit(): void {

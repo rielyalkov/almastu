@@ -6,11 +6,13 @@ import {takeUntil, tap} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
 import {EditPlaceDialogComponent} from './edit-place-dialog/edit-place-dialog.component';
 import {GeoPoint} from '@angular/fire/firestore';
+import {DeletePlaceDialogComponent} from './delete-place-dialog/delete-place-dialog.component';
 
 export interface PlaceModel {
   name: string;
   icon: string;
   id: number;
+  docId: string;
   latlng: GeoPoint;
   scale: number;
 }
@@ -53,18 +55,21 @@ export class MapEditorComponent implements OnInit, OnDestroy {
   }
 
   addPlace(): void {
-    const dialogRef = this.dialog.open(EditPlaceDialogComponent);
+    this.dialog.open(EditPlaceDialogComponent);
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  editPlace(placeData: PlaceModel): void {
+    this.dialog.open(EditPlaceDialogComponent, {data: placeData});
+  }
+
+  deletePlace(placeData: PlaceModel): void {
+    this.dialog.open(DeletePlaceDialogComponent, {data: {
+        docId: placeData.docId,
+        name: placeData.name,
+      }
     });
   }
 
-  editPlace(placeData): void {
-    const dialogRef = this.dialog.open(EditPlaceDialogComponent, {data: placeData});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  // TODO
+  openPlaceRoutes(placeData: PlaceModel): void { }
 }

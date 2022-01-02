@@ -12,6 +12,7 @@ import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
+import { DeletePlaceDialogComponent } from './map-editor-component/delete-place-dialog/delete-place-dialog.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MapEditorComponent,
     PlaceEditorComponent,
     EditPlaceDialogComponent,
+    DeletePlaceDialogComponent,
   ]
 })
 export class MapEditorModule { }

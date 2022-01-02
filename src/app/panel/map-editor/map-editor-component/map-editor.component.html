@@ -35,14 +35,8 @@
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef> Управление </th>
       <td mat-cell *matCellDef="let element">
-        <button
-          (click)="editPlace(element)"
-          mat-icon-button>
-          <mat-icon>
-            edit
-          </mat-icon>
-        </button>
-
+        <ng-container *ngTemplateOutlet="placeButtons; context: {element: element}">
+        </ng-container>
       </td>
     </ng-container>
 
@@ -53,4 +47,31 @@
 
 <ng-template #loadingTemplate>
   <mat-spinner></mat-spinner>
+</ng-template>
+
+<ng-template
+  #placeButtons
+  let-element="element"
+>
+  <button
+    (click)="editPlace(element)"
+    mat-icon-button>
+    <mat-icon>
+      edit
+    </mat-icon>
+  </button>
+  <button
+    (click)="openPlaceRoutes(element)"
+    mat-icon-button>
+    <mat-icon>
+      map
+    </mat-icon>
+  </button>
+  <button
+    (click)="deletePlace(element)"
+    mat-icon-button>
+    <mat-icon>
+      delete
+    </mat-icon>
+  </button>
 </ng-template>
