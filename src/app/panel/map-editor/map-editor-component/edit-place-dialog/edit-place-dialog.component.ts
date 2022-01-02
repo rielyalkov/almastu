@@ -10,7 +10,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PlacesService} from '../../services/places.service';
 import {GeoPoint} from '@angular/fire/firestore';
 import {PlaceModel} from '../map-editor.component';
-import {BehaviorSubject, combineLatest, Subject} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {OSM_CONFIG, OsmConfig} from '../../../../osm-config/osm.config';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {convertGeoPointToLatLng} from '../../shared/geopoint-to-latlng.function';
@@ -19,20 +19,20 @@ import {LatLng, Marker} from 'leaflet';
 
 
 @Component({
-  selector: 'app-add-place-dialog',
-  templateUrl: './add-place-dialog.component.html',
-  styleUrls: ['./add-place-dialog.component.css'],
+  selector: 'app-edit-place-dialog',
+  templateUrl: './edit-place-dialog.component.html',
+  styleUrls: ['./edit-place-dialog.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddPlaceDialogComponent implements OnInit, AfterViewInit, OnDestroy {
+export class EditPlaceDialogComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public form: FormGroup;
+  public isValid: boolean;
+  public isCreating$: Observable<boolean>;
 
   private marker$: BehaviorSubject<Marker> = new BehaviorSubject<Marker>(null);
   private destroy$: Subject<boolean> = new Subject<boolean>();
-
-  map;
-  public isValid: boolean;
+  private map: L.Map;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,7 +40,9 @@ export class AddPlaceDialogComponent implements OnInit, AfterViewInit, OnDestroy
     private cdRef: ChangeDetectorRef,
     @Inject(OSM_CONFIG) public osmConfig: OsmConfig,
     @Inject(MAT_DIALOG_DATA) public data: PlaceModel,
-  ) { }
+  ) {
+    this.isCreating$ = this.placesService.isCreating$;
+  }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -85,15 +87,17 @@ export class AddPlaceDialogComponent implements OnInit, AfterViewInit, OnDestroy
     });
   }
 
-  addNewPlace(): void {
+  savePlace(): void {
     const currentMarker: LatLng = this.marker$.getValue().getLatLng();
     const newPlaceData = {
       latlng: new GeoPoint(currentMarker.lat, currentMarker.lng),
-      id: this.data.id ?? this.placesService.places.length,
+      id: this.data?.id ?? this.placesService.places.length,
       ...this.form.getRawValue()
     };
 
-    this.placesService.createNewPlace(newPlaceData);
+    this.placesService.createNewPlace(newPlaceData).pipe(
+      takeUntil(this.destroy$),
+    ).subscribe();
   }
 
   ngAfterViewInit(): void {

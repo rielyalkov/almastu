@@ -7,7 +7,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { AddPlaceDialogComponent } from './map-editor-component/add-place-dialog/add-place-dialog.component';
+import { EditPlaceDialogComponent } from './map-editor-component/edit-place-dialog/edit-place-dialog.component';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -29,7 +29,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   declarations: [
     MapEditorComponent,
     PlaceEditorComponent,
-    AddPlaceDialogComponent,
+    EditPlaceDialogComponent,
   ]
 })
 export class MapEditorModule { }

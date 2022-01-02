@@ -4,7 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
 import {MatDialog} from '@angular/material/dialog';
-import {AddPlaceDialogComponent} from './add-place-dialog/add-place-dialog.component';
+import {EditPlaceDialogComponent} from './edit-place-dialog/edit-place-dialog.component';
 import {GeoPoint} from '@angular/fire/firestore';
 
 export interface PlaceModel {
@@ -53,7 +53,7 @@ export class MapEditorComponent implements OnInit, OnDestroy {
   }
 
   addPlace(): void {
-    const dialogRef = this.dialog.open(AddPlaceDialogComponent);
+    const dialogRef = this.dialog.open(EditPlaceDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -61,7 +61,7 @@ export class MapEditorComponent implements OnInit, OnDestroy {
   }
 
   editPlace(placeData): void {
-    const dialogRef = this.dialog.open(AddPlaceDialogComponent, {data: placeData});
+    const dialogRef = this.dialog.open(EditPlaceDialogComponent, {data: placeData});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

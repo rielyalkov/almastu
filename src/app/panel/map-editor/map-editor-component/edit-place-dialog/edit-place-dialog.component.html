@@ -32,12 +32,17 @@
 </form>
 
 <div class="add-place__button__wrapper">
-  <button
-    mat-button
-    [disabled]="!isValid"
-    (click)="addNewPlace()">
-    Добавить новое место путешествий
-  </button>
+  <ng-container *ngIf="!(isCreating$ | async); else isCreatingBLock">
+    <button
+      mat-button
+      [disabled]="!isValid"
+      (click)="savePlace()">
+      Добавить новое место путешествий
+    </button>
+  </ng-container>
+  <ng-template #isCreatingBLock>
+    <mat-spinner></mat-spinner>
+  </ng-template>
 </div>
 
 
