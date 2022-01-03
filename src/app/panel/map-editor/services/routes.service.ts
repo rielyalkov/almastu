@@ -11,10 +11,12 @@ export class RoutesService {
     private db: AngularFirestore
   ) { }
 
-  getRouteMap(): Observable<any> {
+  getPlace(id: string): Observable<any> {
+    return this.db.collection('/places').doc(`/${id}`).valueChanges();
+  }
+
+  getPlaceCoordinatesData(id: string): Observable<any> {
     return this.db.collection('/coordinates')
-      .doc('/Karelia')
-      .collection('/routes')
-      .valueChanges();
+      .doc(`/${id}`).collection('/routes').valueChanges();
   }
  }

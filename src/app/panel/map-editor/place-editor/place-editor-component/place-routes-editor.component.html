@@ -1,0 +1,62 @@
+<div class="place-routes-editor__row">
+  <div
+    id="mapPlaceHTML">
+    <div id='mapPlaceEditor'></div>
+  </div>
+  <div class="row__table">
+    <table mat-table [dataSource]="routes">
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef> № </th>
+        <td mat-cell *matCellDef="let element, index as i"> {{i+1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef> Год </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef> Цвет </th>
+        <td mat-cell *matCellDef="let element"> {{element.color}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="firstLatLng">
+        <th mat-header-cell *matHeaderCellDef> Координаты первой точки </th>
+        <td mat-cell *matCellDef="let element"> {{element.polylineArray['0'] | roundCoordinates}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef> Управление </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngTemplateOutlet="placeButtons; context: {element: element}">
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+
+<ng-template
+  #placeButtons
+  let-element="element"
+>
+  <button
+    (click)="editRoute(element)"
+    mat-icon-button>
+    <mat-icon>
+      edit
+    </mat-icon>
+  </button>
+  <button
+    (click)="deleteRoute(element)"
+    mat-icon-button>
+    <mat-icon>
+      delete
+    </mat-icon>
+  </button>
+</ng-template>
+
