@@ -13,6 +13,7 @@ import { Page404Component } from './page404/page404.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsEditorComponent } from './panel/news-editor/news-editor.component';
 import { PanelMainComponent } from './panel/panel-main/panel-main.component';
+import { MapDetailComponent } from './pages/map/map-detail/map-detail.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPanel = () => redirectLoggedInTo(['panel']);
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'map',
         loadChildren: () => import('./pages/map/map.module').then(m => m.MapModule)
+      },
+      {
+        path: 'map/:route',
+        component: MapDetailComponent
       },
       {
         path: 'gallery',

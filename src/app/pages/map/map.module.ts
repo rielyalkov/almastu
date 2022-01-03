@@ -5,17 +5,21 @@ import { MapComponent } from './map-component/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatRadioModule } from '@angular/material/radio';
 import { FormsModule } from '@angular/forms';
+import { MapDetailComponent } from './map-detail/map-detail.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     MapComponent,
+    MapDetailComponent,
   ],
   imports: [
     CommonModule,
     LeafletModule,
     MatRadioModule,
     FormsModule,
-    MapRoutingModule
+    MapRoutingModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MapModule {
