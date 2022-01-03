@@ -14,46 +14,11 @@ export class MapService {
     return this.db.collection('/places').valueChanges();
   }
 
-  makeArray(): void {
-    const route = [];
-
-    // route.map((q, i) => {
-    //     this.db.collection('/coordinates').doc('/Karelia').collection('/routes').doc('/1').update({[i]: q});
-    // });
-  }
-
   getCoord(PathNumber: number): Observable<any> {
-
-    switch (PathNumber) {
-      case 0: {
-        const coord = this.db.collection('/coordinates')
-          .doc('/Khibiny')
-          .collection('/routes')
-          .valueChanges();
-        return coord.pipe();
-      }
-      case 1: {
-        const coord = this.db.collection('/coordinates')
-          .doc('/Taganay')
-          .collection('/routes')
-          .valueChanges();
-        return coord.pipe();
-      }
-      case 2: {
-        const coord = this.db.collection('/coordinates')
-          .doc('/Elbrus')
-          .collection('/routes')
-          .valueChanges();
-        return coord.pipe();
-      }
-      case 6: {
-        const coord = this.db.collection('/coordinates')
-          .doc('/Karelia')
-          .collection('/routes')
-          .valueChanges();
-        return coord.pipe();
-      }
-    }
+    return  this.db.collection('/coordinates')
+      .doc(`/${PathNumber}`)
+      .collection('/routes')
+      .valueChanges();
   }
 
 }

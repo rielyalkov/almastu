@@ -69,7 +69,7 @@ export class MapComponent implements OnInit, OnDestroy {
       map(q => routesArrays = q),
       tap(() => {
         for (let j = 0; j < routesArrays.length; j++) {
-          coordinatesArray = Object.values(routesArrays[j]);
+          coordinatesArray = Object.values(routesArrays[j].polylineArray);
 
           // @ts-ignore
           const line = L.polyline(coordinatesArray, {color: this.routeColors[j], snakingSpeed: 200});

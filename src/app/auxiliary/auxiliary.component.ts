@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MapService } from '../pages/map/mapService/map-service.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 
@@ -13,8 +12,7 @@ export class AuxiliaryComponent implements OnInit {
 
   constructor(iconRegistry: MatIconRegistry,
               sanitizer: DomSanitizer,
-              private router: Router,
-              private service: MapService
+              private router: Router
   ) {
   }
 
@@ -23,7 +21,6 @@ export class AuxiliaryComponent implements OnInit {
 
   navigateToAbout(): void {
     this.router.navigateByUrl('/about');
-    this.service.makeArray();
   }
 
   navigateToMain(): void {
