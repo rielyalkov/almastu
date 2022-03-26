@@ -1,11 +1,13 @@
 #mapPlaceHTML {
   display: block;
-  width: 400px;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-#mapRoutesEditor {
-  height: 400px;
-  width: 400px;
+#editRoute {
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   position: relative;
   z-index: 500;

@@ -4,12 +4,15 @@
   flex-wrap: wrap;
 }
 
-
 .row__table {
   margin-left: 20px;
   width: 600px;
 }
 
 .mat-table {
+  width: 100%;
+}
+
+.mat-button {
   width: 100%;
 }

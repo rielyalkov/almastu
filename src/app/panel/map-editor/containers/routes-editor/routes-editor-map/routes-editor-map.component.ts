@@ -21,7 +21,7 @@ export class RoutesEditorMapComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.map = L.map('mapPlaceEditor').setView(
+    this.map = L.map('mapRoutesEditor').setView(
       [
         this.placeData[1].latlng.latitude,
         this.placeData[1].latlng.longitude,

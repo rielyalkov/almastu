@@ -4,6 +4,9 @@ import {PlaceModel} from '../edit-places-table/edit-places-table.component';
 import {RoutesService} from '../../services/routes.service';
 import {map, switchMap, tap} from 'rxjs/operators';
 import {of, combineLatest, Observable} from 'rxjs';
+import {MatDialog} from '@angular/material/dialog';
+import {RouteDialogComponent} from './route-dialog/route-dialog.component';
+import {RouteModel} from './routes-editor-table/routes-editor-table.component';
 
 @Component({
   selector: 'app-place-routes-editor-container',
@@ -13,12 +16,13 @@ import {of, combineLatest, Observable} from 'rxjs';
 })
 export class RoutesEditorContainerComponent implements OnInit {
 
-  public placeData$: Observable<[any, PlaceModel]>;
+  public placeData$: Observable<[RouteModel[], PlaceModel]>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private routesService: RoutesService
+    private routesService: RoutesService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -31,4 +35,11 @@ export class RoutesEditorContainerComponent implements OnInit {
     );
   }
 
+  addRoute(placeData: [RouteModel[], PlaceModel]): void {
+    this.dialog.open(RouteDialogComponent, {
+      height: '80vh',
+      width: '80vw',
+      data: placeData
+    });
+  }
 }

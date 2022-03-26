@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {PlaceModel} from '../../edit-places-table/edit-places-table.component';
 import * as L from 'leaflet';
 import 'leaflet-draw';
@@ -19,6 +19,9 @@ export interface RouteModel {
 export class RoutesEditorTableComponent implements OnInit {
 
   @Input() public placeData: [RouteModel[], PlaceModel];
+
+  @Output() public addRoute: EventEmitter<[RouteModel[], PlaceModel]>
+    = new EventEmitter<[RouteModel[], PlaceModel]>();
 
   public routes = new MatTableDataSource<RouteModel>();
   public displayedColumns: string[] = ['number', 'year', 'color', 'firstLatLng', 'edit'];

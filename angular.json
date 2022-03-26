@@ -31,6 +31,8 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "customTheme.scss",
+              "./node_modules/leaflet-draw/dist/leaflet.draw.css",
+              "./node_modules/leaflet-draw/dist/leaflet.draw-src.css",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
