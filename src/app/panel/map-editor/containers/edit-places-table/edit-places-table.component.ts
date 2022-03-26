@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {PlacesService} from '../services/places.service';
+import {PlacesService} from '../../services/places.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {takeUntil, tap} from 'rxjs/operators';
@@ -19,12 +19,12 @@ export interface PlaceModel {
 }
 
 @Component({
-  selector: 'app-map-editor',
-  templateUrl: './map-editor.component.html',
-  styleUrls: ['./map-editor.component.css'],
+  selector: 'app-edit-places-table-container',
+  templateUrl: './edit-places-table.component.html',
+  styleUrls: ['./edit-places-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MapEditorComponent implements OnInit, OnDestroy {
+export class EditPlacesTableComponent implements OnInit, OnDestroy {
 
   public places: MatTableDataSource<PlaceModel>;
   public displayedColumns: string[] = ['number', 'name', 'icon', 'latlng', 'scale', 'edit'];
@@ -72,8 +72,7 @@ export class MapEditorComponent implements OnInit, OnDestroy {
     });
   }
 
-  // TODO
   openPlaceRoutes(placeData: PlaceModel): void {
-    this.router.navigateByUrl(`/panel/map-editor/place/${placeData.docId}`, {state: placeData}).then();
+    this.router.navigateByUrl(`/panel/map-editor/place/${placeData.docId}`).then();
   }
 }

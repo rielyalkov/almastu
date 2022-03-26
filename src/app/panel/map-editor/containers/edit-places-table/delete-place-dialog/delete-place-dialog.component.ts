@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Inject, OnDestroy} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {PlacesService} from '../../services/places.service';
+import {PlacesService} from '../../../services/places.service';
 import {takeUntil} from 'rxjs/operators';
 import {Subject} from 'rxjs';
 

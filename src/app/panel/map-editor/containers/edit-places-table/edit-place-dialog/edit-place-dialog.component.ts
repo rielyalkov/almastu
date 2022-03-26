@@ -7,13 +7,13 @@ import {
 } from '@angular/core';
 import * as L from 'leaflet';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {PlacesService} from '../../services/places.service';
+import {PlacesService} from '../../../services/places.service';
 import {GeoPoint} from '@angular/fire/firestore';
-import {PlaceModel} from '../map-editor.component';
+import {PlaceModel} from '../edit-places-table.component';
 import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
-import {OSM_CONFIG, OsmConfig} from '../../../../osm-config/osm.config';
+import {OSM_CONFIG, OsmConfig} from '../../../../../osm-config/osm.config';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {convertGeoPointToLatLng} from '../../shared/geopoint-to-latlng.function';
+import {convertGeoPointToLatLng} from '../../../shared/geopoint-to-latlng.function';
 import {takeUntil} from 'rxjs/operators';
 import {LatLng, Marker} from 'leaflet';
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import {from, Observable, Subject} from 'rxjs';
-import {PlaceModel} from '../map-editor-component/map-editor.component';
+import {PlaceModel} from '../containers/edit-places-table/edit-places-table.component';
 import {tap} from 'rxjs/operators';
 
 @Injectable({

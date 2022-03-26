@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MapEditorComponent} from './map-editor-component/map-editor.component';
-import {PlaceRoutesEditorContainerComponent} from './place-editor/place-routes-editor-container.component';
+import {EditPlacesTableComponent} from './containers/edit-places-table/edit-places-table.component';
+import {RoutesEditorContainerComponent} from './containers/routes-editor/routes-editor-container.component';
 import {MapEditorRootComponent} from './map-editor-root/map-editor-root.component';
 
 const routes: Routes = [
@@ -11,11 +11,11 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MapEditorComponent
+        component: EditPlacesTableComponent
       },
       {
         path: 'place/:id',
-        component: PlaceRoutesEditorContainerComponent
+        component: RoutesEditorContainerComponent
       }
     ]
   },

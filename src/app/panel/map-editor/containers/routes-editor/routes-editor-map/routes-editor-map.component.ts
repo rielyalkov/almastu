@@ -1,36 +1,26 @@
 import {ChangeDetectionStrategy, Component, Inject, Input, OnInit} from '@angular/core';
-import {PlaceModel} from '../../map-editor-component/map-editor.component';
+import {PlaceModel} from '../../edit-places-table/edit-places-table.component';
+import {RouteModel} from '../routes-editor-table/routes-editor-table.component';
+import {OSM_CONFIG, OsmConfig} from '../../../../../osm-config/osm.config';
 import * as L from 'leaflet';
-import 'leaflet-draw';
-import {OSM_CONFIG, OsmConfig} from '../../../../osm-config/osm.config';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface RouteModel {
-  polylineArray: {};
-  color: string;
-}
 
 @Component({
-  selector: 'app-place-routes-editor-component',
-  templateUrl: './place-routes-editor.component.html',
-  styleUrls: ['./place-routes-editor.component.css'],
+  selector: 'app-routes-editor-map',
+  templateUrl: './routes-editor-map.component.html',
+  styleUrls: ['./routes-editor-map.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PlaceRoutesEditorComponent implements OnInit {
+export class RoutesEditorMapComponent implements OnInit {
 
   @Input() public placeData: [RouteModel[], PlaceModel];
 
   private map: L.Map;
-
-  public routes = new MatTableDataSource<RouteModel>();
-  public displayedColumns: string[] = ['number', 'year', 'color', 'firstLatLng', 'edit'];
 
   constructor(
     @Inject(OSM_CONFIG) public osmConfig: OsmConfig,
   ) { }
 
   ngOnInit(): void {
-    this.routes = new MatTableDataSource(this.placeData[0]);
     this.map = L.map('mapPlaceEditor').setView(
       [
         this.placeData[1].latlng.latitude,
@@ -49,13 +39,4 @@ export class PlaceRoutesEditorComponent implements OnInit {
     });
   }
 
-  // TODO
-  editRoute(element: any): void {
-
-  }
-
-  // TODO
-  deleteRoute(element: any): void {
-
-  }
 }

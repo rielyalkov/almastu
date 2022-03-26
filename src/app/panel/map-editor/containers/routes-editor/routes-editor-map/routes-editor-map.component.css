@@ -1,0 +1,13 @@
+
+#mapPlaceHTML {
+  display: block;
+  width: 400px;
+}
+
+#mapPlaceEditor {
+  height: 400px;
+  width: 400px;
+  border-radius: 10px;
+  position: relative;
+  z-index: 500;
+}

@@ -1,8 +1,11 @@
 <div class="place-editor">
   <ng-container *ngIf="placeData$ | async as placeData; else loadingSpinner">
-    <app-place-routes-editor-component
+    <app-routes-editor-map
       [placeData]="placeData"
-    ></app-place-routes-editor-component>
+    ></app-routes-editor-map>
+    <app-routes-editor-table
+      [placeData]="placeData"
+    ></app-routes-editor-table>
   </ng-container>
 
   <ng-template #loadingSpinner>
