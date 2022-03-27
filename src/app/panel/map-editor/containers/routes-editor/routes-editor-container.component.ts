@@ -2,10 +2,10 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {PlaceModel} from '../edit-places-table/edit-places-table.component';
 import {RoutesService} from '../../services/routes.service';
-import {map, switchMap, tap} from 'rxjs/operators';
-import {of, combineLatest, Observable} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
+import {combineLatest, Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
-import {RouteDialogComponent} from './route-dialog/route-dialog.component';
+import {RouteBuilderDialogComponent} from './route-builder-dialog/route-builder-dialog.component';
 import {RouteModel} from './routes-editor-table/routes-editor-table.component';
 
 @Component({
@@ -36,7 +36,7 @@ export class RoutesEditorContainerComponent implements OnInit {
   }
 
   addRoute(placeData: [RouteModel[], PlaceModel]): void {
-    this.dialog.open(RouteDialogComponent, {
+    this.dialog.open(RouteBuilderDialogComponent, {
       height: '80vh',
       width: '80vw',
       data: placeData

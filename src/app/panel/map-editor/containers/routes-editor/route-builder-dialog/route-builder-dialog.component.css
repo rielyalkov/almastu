@@ -1,0 +1,28 @@
+#mapPlaceHTML {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#editRoute {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+  z-index: 500;
+}
+
+::ng-deep.leaflet-div-icon {
+  background-color: #f4f4f4;
+  border: 1px solid #666;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+::ng-deep.leaflet-editing-icon {
+  background-color: #f4f4f4;
+  border: 1px solid #666;
+  border-radius: 50%;
+  display: inline-block;
+}

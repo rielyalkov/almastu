@@ -8,12 +8,12 @@ import {OSM_CONFIG, OsmConfig} from '../../../../../osm-config/osm.config';
 import {RouteModel} from '../routes-editor-table/routes-editor-table.component';
 
 @Component({
-  selector: 'app-route-dialog',
-  templateUrl: './route-dialog.component.html',
-  styleUrls: ['./route-dialog.component.css'],
+  selector: 'app-route-builder-dialog',
+  templateUrl: './route-builder-dialog.component.html',
+  styleUrls: ['./route-builder-dialog.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RouteDialogComponent implements OnInit {
+export class RouteBuilderDialogComponent implements OnInit {
 
   private map: L.Map;
 
@@ -24,7 +24,7 @@ export class RouteDialogComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.map = L.map('editRoute', {drawControl: true, fullscreenControl: true}).setView(
+    this.map = L.map('editRoute', {fullscreenControl: true}).setView(
       [
         this.placeData[1].latlng.latitude,
         this.placeData[1].latlng.longitude,
@@ -36,18 +36,47 @@ export class RouteDialogComponent implements OnInit {
     }).addTo(this.map);
 
     const drawnItems = L.featureGroup().addTo(this.map);
+    this.map.addLayer(drawnItems);
+
+    // @ts-ignore
+    const drawControl = new L.Control.Draw({
+      draw: {
+        polyline: {
+          shapeOptions: {
+            color: '#000',
+            weight: 4
+          }
+        },
+        polygon: false,
+        marker: false,
+        rectangle: false,
+        circle: false,
+        circlemarker: false,
+      },
+      edit: {
+        featureGroup: drawnItems,
+        remove: true
+      },
+    });
+    this.map.addControl(drawControl);
+
+    // @ts-ignore
+    new L.Draw.Polyline(this.map, drawControl.options.draw.polyline).enable();
 
     // @ts-ignore
     this.map.on(L.Draw.Event.CREATED, (e) => {
       const layer = e.layer;
       drawnItems.addLayer(layer);
-      console.log(layer.getLatLngs());
+
+      // @ts-ignore
+      new L.Draw.Polyline(this.map, drawControl.options.draw.polyline).disable();
     });
 
     // @ts-ignore
-    // console.log(this.map.getToolbars());
-
-    // setTimeout(() => console.log(beingDrawn), 5000);
+    this.map.on('click', (e) => {
+      // @ts-ignore
+      this.map.setView(e.latlng, this.map.getZoom());
+    });
   }
 
 }

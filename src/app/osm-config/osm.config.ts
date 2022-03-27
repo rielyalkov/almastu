@@ -1,6 +1,5 @@
 import { InjectionToken } from '@angular/core';
 
-
 const attribution = 'Map data: &copy; ' +
   '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ' +
   'contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | <br>Map style: &copy; ' +

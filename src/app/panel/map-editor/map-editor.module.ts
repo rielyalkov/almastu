@@ -17,7 +17,7 @@ import { MapEditorRootComponent } from './map-editor-root/map-editor-root.compon
 import { RoutesEditorTableComponent } from './containers/routes-editor/routes-editor-table/routes-editor-table.component';
 import { RoundCoordinatesPipe } from './shared/round-coordinates.pipe';
 import { RoutesEditorMapComponent } from './containers/routes-editor/routes-editor-map/routes-editor-map.component';
-import { RouteDialogComponent } from './containers/routes-editor/route-dialog/route-dialog.component';
+import { RouteBuilderDialogComponent } from './containers/routes-editor/route-builder-dialog/route-builder-dialog.component';
 
 @NgModule({
   imports: [
@@ -41,7 +41,7 @@ import { RouteDialogComponent } from './containers/routes-editor/route-dialog/ro
     RoutesEditorTableComponent,
     RoundCoordinatesPipe,
     RoutesEditorMapComponent,
-    RouteDialogComponent,
+    RouteBuilderDialogComponent,
   ]
 })
 export class MapEditorModule { }
