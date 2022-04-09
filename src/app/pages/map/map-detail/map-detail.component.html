@@ -1,0 +1,4 @@
+<div id="loading" [@fadeOut]="true" *ngIf="!(route | async)">
+  <mat-progress-bar mode="indeterminate" id="loading-bar"></mat-progress-bar>
+</div>
+<p *ngIf="(route | async)">map-detail works! name: {{(route | async)?.name}}</p>
