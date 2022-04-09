@@ -1,8 +1,0 @@
-#loading-bar {
-  position: absolute;
-  height: 10vh;
-}
-
-::ng-deep .page-content {
-  min-height: 10vh;
-}

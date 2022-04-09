@@ -21,14 +21,10 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
 export class MapDetailComponent {
 
   route: Observable<MapDoc>;
-  loaded: boolean;
 
   constructor(private webRoute: ActivatedRoute, private service: MapDetailService) {
     this.webRoute.url.subscribe((urlSegments) => {
       this.route = service.getRouteInfo(urlSegments[1].path);
-      this.route.subscribe(() => {
-        this.loaded = true;
-      });
     });
   }
 
