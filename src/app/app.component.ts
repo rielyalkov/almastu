@@ -11,4 +11,8 @@ export class AppComponent {
 
   constructor() {
   }
+
+  isWinter(): boolean {
+    return (new Date()).getMonth() < 3;
+  }
 }

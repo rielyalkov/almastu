@@ -1,4 +1,4 @@
-<div class="snow" *ngFor="let _ of snowflakesRange"></div>
+<div *ngFor="let _ of snowflakesRange" [style.visibility]="isWinter() ? 'visible' : 'hidden'" class="snow"></div>
 <router-outlet></router-outlet>
 <div id="floating">
   <mat-icon class="floating-close-button mat-accent"
