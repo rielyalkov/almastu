@@ -14,6 +14,7 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsEditorComponent } from './panel/news-editor/news-editor.component';
 import { PanelMainComponent } from './panel/panel-main/panel-main.component';
 import { MapDetailComponent } from './pages/map/map-detail/map-detail.component';
+import { HikeComponent } from './pages/hike/hike.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPanel = () => redirectLoggedInTo(['panel']);
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: 'contacts',
         component: ContactsComponent
+      },
+      {
+        path: 'hike/:id',
+        component: HikeComponent,
       },
     ]
   },

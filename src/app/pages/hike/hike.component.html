@@ -1,0 +1,7 @@
+<div *ngIf="!doc && !notFound" [@fadeOut]="true" id="loading">
+  <mat-progress-spinner diameter=30 id="loading-bar" mode="indeterminate"></mat-progress-spinner>
+</div>
+<p *ngIf="doc">hike works! id: {{doc?.full_name}}</p>
+<div *ngIf="notFound" class="notFound">
+  <div>404: Поход не найден!</div>
+</div>

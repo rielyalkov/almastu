@@ -29,6 +29,7 @@
   .page-content {
     width: 1000px;
     margin: 0 auto;
+    min-height: 50px;
   }
 
   .row {
