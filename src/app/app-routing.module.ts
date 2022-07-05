@@ -14,6 +14,7 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsEditorComponent } from './panel/news-editor/news-editor.component';
 import { PanelMainComponent } from './panel/panel-main/panel-main.component';
 import { MapDetailComponent } from './pages/map/map-detail/map-detail.component';
+import {PhotosphereComponent} from './pages/gallery/photosphere/photosphere.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToPanel = () => redirectLoggedInTo(['panel']);
@@ -49,6 +50,10 @@ const routes: Routes = [
         component: ContactsComponent
       },
     ]
+  },
+  {
+    path: 'photosphere/:id',
+    component: PhotosphereComponent,
   },
   {
     path: 'login',
