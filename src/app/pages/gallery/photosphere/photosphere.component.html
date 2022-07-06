@@ -1,1 +1,38 @@
-<div #viewer style="width: 100vw; height: 100vh;"></div>
+<main>
+  <div class="content">
+    <header class="row">
+      <!--  <button mat-icon-button class="mobile-menu-button" [matMenuTriggerFor]="mobile_menu">-->
+      <!--    <mat-icon>menu</mat-icon>-->
+      <!--  </button>-->
+      <button class="class-elements left" mat-button routerLink="/about">О клубе</button>
+      <button class="class-elements" mat-button routerLink="/map">Карта</button>
+      <div class="img-board">
+        <img alt="logo" class="hh" height=50px routerLink="/" src='./favicon.ico'>
+        <div class="logo_menu" id="logo_menu">
+          <button mat-menu-item routerLink="/about">О нас</button>
+        </div>
+      </div>
+      <button class="class-elements" mat-button routerLink="/gallery">Фотогалерея</button>
+      <button class="class-elements right" mat-button routerLink="/contacts">Контакты</button>
+    </header>
+  </div>
+
+  <div id="treeCont">
+    <section #tree id="tree"></section>
+  </div>
+
+  <div *ngIf="mode.includes('r') || mode.includes('m')" id="torivercont">
+    <button (click)="setPano(toRiver)" id="toriver" mat-button>{{mode.includes('r') ? 'К берегу' : 'Обратно'}}</button>
+  </div>
+  <button (click)="setPano(prev)" *ngIf="mode.includes('b')" id="prevbutton" mat-button>Назад</button>
+  <button (click)="setPano(next)" *ngIf="mode.includes('f')" id="nextbutton" mat-button>Дальше</button>
+
+  <div #viewer style="width: 100vw; height: 100vh;"></div>
+
+  <mat-menu #mobile_menu="matMenu">
+    <button mat-menu-item routerLink="/about">О клубе</button>
+    <button mat-menu-item routerLink="/map">Карта</button>
+    <button mat-menu-item routerLink="/gallery">Фотогалерея</button>
+    <button mat-menu-item routerLink="/contacts">Контакты</button>
+  </mat-menu>
+</main>

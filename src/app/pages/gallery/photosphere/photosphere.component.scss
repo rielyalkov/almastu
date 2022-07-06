@@ -1,3 +1,227 @@
+@media only screen and (max-device-width: 620px) {
+  .class-elements {
+    display: none !important;
+  }
+
+  .img-board {
+    margin: 0 auto;
+  }
+
+  img {
+    width: 8vh;
+    height: 8vh;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    background: none !important;
+  }
+
+  #treeCont {
+    display: none;
+  }
+}
+
+@media only screen and (min-device-width: 620px) {
+  .mobile-menu-button {
+    display: none;
+  }
+
+  .content {
+    width: 100vw;
+    margin: 0 auto;
+  }
+
+  .row {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  #nextbutton, #prevbutton, #torivercont, #toriver {
+    display: none;
+  }
+}
+
+#nextbutton, #prevbutton {
+  z-index: 3;
+  top: 80%;
+  position: absolute;
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+#nextbutton {
+  right: 20%;
+}
+
+#prevbutton {
+  left: 20%;
+}
+
+#torivercont {
+  width: 100vw;
+  z-index: 3;
+  position: absolute;
+  display: flex;
+  top: 60%;
+  justify-content: center;
+}
+
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  position: absolute;
+  z-index: 2;
+
+  display: grid;
+  grid-template-rows: 1fr;
+
+  justify-items: center;
+  align-items: center;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  background: url("../../../../assets/images/background_main.jpg") no-repeat center;
+  background-size: cover;
+  border-radius: 0 0 10px 10px;
+}
+
+.class-elements {
+  color: white;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  background: none;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 0 !important;
+}
+
+.left {
+  border-radius: 0 0 0 10px !important;
+}
+
+.right {
+  border-radius: 0 0 10px 0 !important;
+}
+
+mat-card {
+  transition: none !important;
+  box-shadow: none !important;
+  margin-bottom: 10px;
+}
+
+.img-board {
+  margin: 5px auto;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+
+  cursor: pointer;
+  opacity: 1;
+  transform: scale(1);
+
+  border-radius: 25px;
+}
+
+.logo_menu {
+  margin-top: 105%;
+  box-shadow: 0 0 21px -4px rgba(0, 0, 0, 0.33);
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background: white;
+  border-radius: 4px;
+  transition: visibility 0s, opacity 0.1s linear;
+  display: block;
+}
+
+.logo_menu button {
+  border-radius: 4px;
+}
+
+.img-board:hover .hh {
+  opacity: 0.8;
+}
+
+.img-board:hover .logo_menu {
+  visibility: visible;
+  opacity: 1;
+}
+
+#treeCont {
+  z-index: 3;
+  position: absolute;
+  width: 100vw;
+  height: 30vh;
+  top: 100%;
+  transform: translateY(-100%);
+  overflow: hidden;
+}
+
+#tree {
+  width: inherit;
+  height: inherit;
+  transform: scale(150%) translateX(-10%);
+}
+
+.mitch-d3-tree {
+  &.boxed-tree {
+    &.default {
+      .link {
+        fill: none;
+        stroke: #ccc;
+        stroke-width: 2px;
+      }
+
+      .node {
+        cursor: pointer;
+
+        &.collapsed .body-group .body-box {
+          fill: lightsteelblue;
+        }
+
+        &.selected .body-group .body-box {
+          stroke: #00A2A3;
+          stroke-width: 2.5px;
+        }
+
+        .body-group .body-box {
+          stroke: steelblue;
+          fill: white;
+          rx: 6;
+          ry: 6;
+        }
+
+        .title-group .title-box {
+          stroke: steelblue;
+          fill: #4682B4;
+          rx: 10;
+          ry: 10;
+        }
+
+        /*
+          Do NOT do any font related CSS that
+          would affect dimensions here, as
+          D3Plus TextBox won't take them
+          into account when performing
+          various operations such as ellipsis.
+        */
+        .title-group text {
+          fill: white;
+        }
+      }
+    }
+  }
+}
+
 /*!
  * Photo Sphere Viewer 4.6.3
  * @copyright 2014-2015 Jérémy Heleine
