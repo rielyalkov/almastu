@@ -13,6 +13,6 @@ export class AppComponent {
   }
 
   isWinter(): boolean {
-    return (new Date()).getMonth() < 3;
+    return [10,11,0,1,2,3].includes((new Date()).getMonth());
   }
 }
