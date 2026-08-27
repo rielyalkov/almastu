@@ -22,12 +22,10 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - name: Install Angular CLI
-        run: npm install npm install -g @angular/cli > /dev/null
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Build
-        run: ng build
+        run: npx ng build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v4
         with:
