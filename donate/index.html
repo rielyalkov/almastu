@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/donate/">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body{margin:0;background:#fdf9f6;}
+    a{color:#8f1d1d;}
+    a:hover{color:#c0392b;}
+  </style>
+  <script src="./image-slot.js"></script>
+</helmet>
+<div style="min-height: 100vh; display: flex; justify-content: center; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; background: #fdf9f6">
+  <div style="width:100%;max-width:480px;padding:40px 24px 56px;display:flex;flex-direction:column;align-items:center;box-sizing:border-box;">
+
+    <img src="assets/logo.png" alt="Алмасты" style="width:132px;height:132px;border-radius:50%;box-shadow:0 8px 24px rgba(192,57,43,0.15);">
+
+    <h1 style="margin:24px 0 4px;font-size:28px;font-weight:800;color:#1f2a5c;letter-spacing:0.3px;">Алмасты</h1>
+    <p style="margin:0 0 28px;font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#c0392b;">Туристский клуб</p>
+
+    <p style="margin:0 0 36px;font-size:17px;line-height:1.6;color:#3a3a3a;text-align:center;">Собираем на снаряжение и организацию походов.</p>
+
+    <div style="width:100%;height:1px;background:#e8dcd8;margin-bottom:28px;"></div>
+
+    <h2 style="margin:0 0 20px;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1f2a5c;">Поддержать сбор</h2>
+
+    <div style="width:100%;display:flex;flex-direction:column;gap:14px;">
+      <a href="https://messenger.sbrf.ru/sl/Y3i4KSGZCZybXod4L" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;box-sizing:border-box;padding:16px 20px;border-radius:14px;background:#21a038;color:#ffffff;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(33,160,56,0.25);">
+        <img src="assets/sberbank.png" alt="Сбербанк" style="width:26px;height:26px;flex-shrink:0;">
+        Сбербанк
+      </a>
+      <a href="https://www.tbank.ru/cf/9yH6KbQj6wZ" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;box-sizing:border-box;padding:16px 20px;border-radius:14px;background:#ffdd2d;color:#1a1a1a;font-size:17px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(255,221,45,0.3);">
+        <img src="assets/tbank.png" alt="Т-Банк" style="width:26px;height:26px;flex-shrink:0;">
+        Т-Банк
+      </a>
+      <div style="width:100%;box-sizing:border-box;padding:16px 20px;border-radius:14px;background:#ffffff;border:2px solid #d3737e;">
+        <div style="font-size:13px;font-weight:600;color:#9a9a9a;margin-bottom:10px;">Другие банки (перевод по СБП)</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          <span style="font-size:19px;font-weight:700;color:#1f2a5c;letter-spacing:0.3px;">+7 910 434-55-71</span>
+          <button onClick="{{ copyPhone }}" style="flex-shrink:0;padding:8px 14px;border-radius:10px;border:none;background:#1f2a5c;color:#ffffff;font-size:13px;font-weight:700;cursor:pointer;">{{ copyLabel }}</button>
+        </div>
+        <div style="font-size:13px;color:#9a9a9a;margin-top:8px;">Галина Петровна М.</div>
+      </div>
+    </div>
+
+    <p style="margin:36px 0 0;font-size:13px;line-height:1.6;color:#9a9a9a;text-align:center;">Спасибо, что помогаете клубу «Алмасты» готовить новые походы.</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { copyLabel: 'Скопировать' };
+  copyPhone = () => {
+    navigator.clipboard?.writeText('+79104345571').catch(() => {});
+    this.setState({ copyLabel: 'Скопировано' });
+    clearTimeout(this._t);
+    this._t = setTimeout(() => this.setState({ copyLabel: 'Скопировать' }), 1500);
+  };
+  renderVals() {
+    return { copyLabel: this.state.copyLabel, copyPhone: this.copyPhone };
+  }
+}
+</script>
+</body>
+</html>
